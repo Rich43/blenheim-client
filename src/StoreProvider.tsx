@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 import { createContext } from 'react';
-import { computed, decorate, observable } from 'mobx';
+import { computed, observable, makeObservable } from 'mobx';
 
 function nullCheck(str: string | null): string {
     return !str ? '' : str;
@@ -13,6 +13,13 @@ export class Store {
             user: window.sessionStorage.getItem('user')
         }
     };
+
+    constructor() {
+        makeObservable(this, {
+            store: observable,
+            token: computed
+        });
+    }
 
     get token() {
         return nullCheck(this.store.authentication.token);
@@ -32,10 +39,5 @@ export class Store {
         window.sessionStorage.setItem('user', value);
     }
 }
-
-decorate(Store, {
-    store: observable,
-    token: computed
-});
 
 export const StoreProvider = createContext(new Store());

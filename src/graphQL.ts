@@ -1,6 +1,6 @@
-import ApolloClient from 'apollo-boost';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-// If you are editing this, also change docker.sh
 export const client = new ApolloClient({
-    uri: `${window.location.protocol}//${window.location.hostname}:8000`
+    uri: '/graphql',
+    cache: new InMemoryCache()
 });
