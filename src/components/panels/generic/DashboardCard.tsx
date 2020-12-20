@@ -11,7 +11,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Theme } from '@material-ui/core';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-const useStyles = makeStyles<Theme, { }>((theme) => {
+const useStyles = makeStyles<Theme, { }>(() => {
     return ({
         card: {
             minHeight: 175
