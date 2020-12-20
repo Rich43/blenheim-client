@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { CreateDefaultSubDomain, CreateDefaultSubDomainVariables } from '../../../../types/CreateDefaultSubDomain';
-import { useMutation } from '@apollo/client';
+import { FetchResult, MutationResult, MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation CreateDefaultSubDomain($token: String!, $id: ID!) {
@@ -17,4 +17,7 @@ const MUTATION = gql`
     }
 `;
 
-export const useCreateDefaultSubDomainMutation = () => useMutation<CreateDefaultSubDomain, CreateDefaultSubDomainVariables>(MUTATION);
+type CreateDefaultSubDomainMutationType = (variables: CreateDefaultSubDomain) =>
+    MutationTuple<CreateDefaultSubDomain, CreateDefaultSubDomainVariables>;
+export const useCreateDefaultSubDomainMutation: CreateDefaultSubDomainMutationType =
+    () => useMutation<CreateDefaultSubDomain, CreateDefaultSubDomainVariables>(MUTATION);
