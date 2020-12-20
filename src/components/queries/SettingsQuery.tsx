@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { Settings, SettingsVariables } from '../../types/Settings';
-import { useQuery } from '@apollo/client';
+import { QueryResult, useQuery } from '@apollo/client';
 
 const QUERY = gql`
     query Settings($token: String!) {
@@ -15,5 +15,6 @@ const QUERY = gql`
     }
 `;
 
-export const useSettingsQuery = (variables: SettingsVariables) =>
+type SettingsQueryResult = (variables: SettingsVariables) => QueryResult<Settings, SettingsVariables>;
+export const useSettingsQuery: SettingsQueryResult = (variables: SettingsVariables) =>
     useQuery<Settings, SettingsVariables>(QUERY, { partialRefetch: true, variables });
