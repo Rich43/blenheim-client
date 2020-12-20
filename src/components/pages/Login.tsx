@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Container, Theme } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -10,12 +10,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { StoreProvider } from '../../StoreProvider';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Query from 'react-apollo/Query';
 import { observer } from 'mobx-react-lite';
 import useReactRouter from 'use-react-router';
 import { HOME } from '../../App';
 import { Login as LoginType, LoginVariables } from '../../types/Login';
-import gql from 'graphql-tag';
+import { useLazyQuery } from '@apollo/client';
+import { LOGIN_QUERY } from '../queries/LoginQuery';
 
 const useStyles = makeStyles<Theme, {}>((theme) => {
     return ({
@@ -50,13 +50,31 @@ export const Login: React.FC = observer((): JSX.Element => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
     const { history } = useReactRouter();
-    const LOGIN_QUERY = gql`
-        query Login($username: String!, $password: String!) {
-            authentication {
-                login(details: {name: $username, password: $password})
-            }
+    const [getLogin, { loading, error, data }] = useLazyQuery<LoginType, LoginVariables>(
+        LOGIN_QUERY,
+        { fetchPolicy: 'no-cache' }
+    );
+
+    if (data && data.authentication) {
+        const token = data.authentication.login;
+        if (token) {
+            store.token = token;
+            store.user = username;
+            setLogIn(false);
+            history.push(HOME);
+        } else {
+            store.token = '';
+            store.user = '';
+            setLogIn(false);
         }
-    `;
+    }
+
+    useEffect(() => {
+        if (logIn) {
+            getLogin({ variables: { username, password } });
+        }
+    }, [logIn, username, password]);
+
     return (
         <Container component='main' maxWidth='xs'>
             <CssBaseline />
@@ -109,29 +127,8 @@ export const Login: React.FC = observer((): JSX.Element => {
                         Sign In
                     </Button>
                 </form>
-                {logIn && <Query<LoginType, LoginVariables> query={LOGIN_QUERY} variables={{
-                    username: username,
-                    password: password
-                }}>
-                    {({ loading, error, data }): JSX.Element => {
-                        if (loading) return (<span>Loading...</span>);
-                        if (error) return (<span>Error! {error.message}</span>);
-                        if (data && data.authentication) {
-                            const token = data.authentication.login;
-                            if (token) {
-                                store.token = token;
-                                store.user = username;
-                                setLogIn(false);
-                                history.push(HOME);
-                            } else {
-                                store.token = '';
-                                store.user = '';
-                                setLogIn(false);
-                            }
-                        }
-                        return <></>;
-                    }}
-                </Query>}
+                { logIn && loading && (<span>Loading...</span>) }
+                { logIn && error && (<span>Error! {error.message}</span>) }
             </div>
         </Container>
     );
