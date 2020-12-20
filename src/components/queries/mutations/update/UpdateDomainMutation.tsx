@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { UpdateDomain, UpdateDomainVariables } from '../../../../types/UpdateDomain';
-import { useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation UpdateDomain($token: String!, $id: ID!, $newName: String!) {
@@ -20,4 +20,6 @@ const MUTATION = gql`
     }
 `;
 
-export const useUpdateDomainMutation = () => useMutation<UpdateDomain, UpdateDomainVariables>(MUTATION);
+type UpdateDomainMutationType = () => MutationTuple<UpdateDomain, UpdateDomainVariables>;
+export const useUpdateDomainMutation: UpdateDomainMutationType =
+    () => useMutation<UpdateDomain, UpdateDomainVariables>(MUTATION);
