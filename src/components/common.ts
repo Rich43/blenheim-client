@@ -8,7 +8,10 @@ export interface DomainsListProps {
 
 export type DomainsArray = Domains_settings_domains[] | null;
 
-export function createDomainMap(domains: DomainsArray) {
+export function createDomainMap(domains: DomainsArray): {
+    domainMap: { [key: string]: string },
+    firstDomain: string | undefined
+} {
     let firstDomain;
     const domainMap: { [key: string]: string } = {};
 
