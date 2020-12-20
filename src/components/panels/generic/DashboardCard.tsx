@@ -10,7 +10,8 @@ import useReactRouter from 'use-react-router';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Theme } from '@material-ui/core';
 
-const useStyles = makeStyles<Theme, {}>((theme) => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+const useStyles = makeStyles<Theme, { }>((theme) => {
     return ({
         card: {
             minHeight: 175
