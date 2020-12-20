@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { UpdateIPv4, UpdateIPv4Variables } from '../../../../types/UpdateIPv4';
-import { useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation UpdateIPv4($token: String!, $id: ID!, $index: Int!) {
@@ -17,4 +17,5 @@ const MUTATION = gql`
     }
 `;
 
-export const useUpdateIPv4Mutation = () => useMutation<UpdateIPv4, UpdateIPv4Variables>(MUTATION);
+type UpdateIPv4MutationType = () => MutationTuple<UpdateIPv4, UpdateIPv4Variables>;
+export const useUpdateIPv4Mutation: UpdateIPv4MutationType = () => useMutation<UpdateIPv4, UpdateIPv4Variables>(MUTATION);
