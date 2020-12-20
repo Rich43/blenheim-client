@@ -8,7 +8,7 @@ export const IPInfo: FunctionComponent<{
     domainsSettings: Domains_settings;
     domainIndex?: number;
     subdomainIndex?: number;
-}> = ({domainsSettings, domainIndex, subdomainIndex}) => {
+}> = ({ domainsSettings, domainIndex, subdomainIndex }) => {
     let ipv4 = domainsSettings.ipv4[0];
     let ipv6 = domainsSettings.ipv6[0];
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);

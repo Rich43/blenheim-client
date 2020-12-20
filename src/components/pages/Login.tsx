@@ -17,7 +17,8 @@ import { Login as LoginType, LoginVariables } from '../../types/Login';
 import { useLazyQuery } from '@apollo/client';
 import { LOGIN_QUERY } from '../queries/LoginQuery';
 
-const useStyles = makeStyles<Theme, {}>((theme) => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+const useStyles = makeStyles<Theme, { }>((theme) => {
     return ({
         paper: {
             marginTop: theme.spacing(8),

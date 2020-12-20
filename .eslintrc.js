@@ -64,6 +64,7 @@ module.exports = {
         semi: ['error', 'always'],
         'space-before-function-paren': ['error', 'never'],
         'no-use-before-define': [0],
-        '@typescript-eslint/no-use-before-define': [1]
+        '@typescript-eslint/no-use-before-define': [1],
+        'no-undef': [0]
     }
 };
