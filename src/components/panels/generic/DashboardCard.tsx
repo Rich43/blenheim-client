@@ -7,8 +7,8 @@ import List from '@material-ui/core/List';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import useReactRouter from 'use-react-router';
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import { Theme } from "@material-ui/core";
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import { Theme } from '@material-ui/core';
 
 const useStyles = makeStyles<Theme, {}>((theme) => {
     return ({
@@ -27,7 +27,7 @@ export const DashboardCard: FunctionComponent<{
     renderListItem: (listItem: string, count: number) => JSX.Element;
     list: string[];
     linkText: string;
-}> = ({title, redirectURL, renderListItem, list, linkText}) => {
+}> = ({ title, redirectURL, renderListItem, list, linkText }) => {
     const { history } = useReactRouter();
     const styles = useStyles();
 

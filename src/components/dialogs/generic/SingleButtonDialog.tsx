@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@material-ui/core";
-
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 
 export const SingleButtonDialog: FunctionComponent<{
     dialogOpen: boolean;
@@ -9,7 +8,7 @@ export const SingleButtonDialog: FunctionComponent<{
     dialogTitle: string;
     dialogContent: JSX.Element;
     buttonDisabled: boolean;
-}> = ({dialogOpen, okClicked, onClose, dialogTitle, dialogContent, buttonDisabled}) => {
+}> = ({ dialogOpen, okClicked, onClose, dialogTitle, dialogContent, buttonDisabled }) => {
     return (
         <Dialog open={dialogOpen} onClose={() => onClose()} disableBackdropClick={true}>
             <DialogTitle>{dialogTitle}</DialogTitle>

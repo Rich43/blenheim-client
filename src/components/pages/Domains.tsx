@@ -7,11 +7,11 @@ import Fab from '@material-ui/core/Fab';
 import { MoreVert } from '@material-ui/icons';
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { StoreProvider } from '../../StoreProvider';
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import { CreateDomainDialog } from "../dialogs/custom/CreateDomainDialog";
-import { DeleteDomainDialog } from "../dialogs/custom/DeleteDomainDialog";
-import { UpdateDomainDialog } from "../dialogs/custom/UpdateDomainDialog";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { CreateDomainDialog } from '../dialogs/custom/CreateDomainDialog';
+import { DeleteDomainDialog } from '../dialogs/custom/DeleteDomainDialog';
+import { UpdateDomainDialog } from '../dialogs/custom/UpdateDomainDialog';
 
 export const Domains: FunctionComponent = () => {
     const useStyles = makeStyles((theme: Theme) =>

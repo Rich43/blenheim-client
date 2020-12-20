@@ -1,19 +1,19 @@
 import React, { FunctionComponent, useContext } from 'react';
-import { SelectDialog } from "../generic/SelectDialog";
-import { useDeleteDomainMutation } from "../../queries/mutations/delete/DeleteDomainMutation";
-import { StoreProvider } from "../../../StoreProvider";
-import { updateDomainsCache } from "../../queries/DomainsQuery";
-import { createDomainMap, DomainsArray } from "../../common";
+import { SelectDialog } from '../generic/SelectDialog';
+import { useDeleteDomainMutation } from '../../queries/mutations/delete/DeleteDomainMutation';
+import { StoreProvider } from '../../../StoreProvider';
+import { updateDomainsCache } from '../../queries/DomainsQuery';
+import { createDomainMap, DomainsArray } from '../../common';
 
 export const DeleteDomainDialog: FunctionComponent<{
     dialogOpen: boolean;
     onClose: () => void;
     domains: DomainsArray
-}> = ({dialogOpen, onClose, domains}) => {
+}> = ({ dialogOpen, onClose, domains }) => {
     const [value, setValue] = React.useState<unknown>(null);
     const [deleteDomain] = useDeleteDomainMutation();
     const store = useContext(StoreProvider);
-    const {domainMap, firstDomain} = createDomainMap(domains);
+    const { domainMap, firstDomain } = createDomainMap(domains);
 
     if (firstDomain && !value) {
         setValue(firstDomain);
@@ -26,7 +26,7 @@ export const DeleteDomainDialog: FunctionComponent<{
             okClicked={() => {
                 deleteDomain(
                     {
-                        variables: {token: store.token, id: String(value)},
+                        variables: { token: store.token, id: String(value) },
                         update: updateDomainsCache('deleteDomain', store.token)
                     }
                 ).then();

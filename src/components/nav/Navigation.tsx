@@ -5,7 +5,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Typography from '@material-ui/core/Typography';
 import { UserButton } from './UserButton';
 import { SideDrawer } from './SideDrawer';
-import { Generate } from "./Generate";
+import { Generate } from './Generate';
 
 const useStyles = makeStyles({
     title: {

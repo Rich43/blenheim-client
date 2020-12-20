@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { MenuItem, Select } from "@material-ui/core";
-import { AbstractDialog, AbstractDialogProps } from "./AbstractDialog";
+import { MenuItem, Select } from '@material-ui/core';
+import { AbstractDialog, AbstractDialogProps } from './AbstractDialog';
 
 interface SelectDialogProps extends AbstractDialogProps {
     selectData: {[key: string]: string}
@@ -29,4 +29,4 @@ export const SelectDialog: FunctionComponent<SelectDialogProps> = (props) => {
             </Select>
         </AbstractDialog>
     );
-}
+};

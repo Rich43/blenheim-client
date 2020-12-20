@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useContext } from 'react';
 import { SETTINGS } from '../../App';
 import { StoreProvider } from '../../StoreProvider';
-import { useSettingsQuery } from "../queries/SettingsQuery";
-import { ListItemText } from "@material-ui/core";
-import { DashboardCard } from "./generic/DashboardCard";
+import { useSettingsQuery } from '../queries/SettingsQuery';
+import { ListItemText } from '@material-ui/core';
+import { DashboardCard } from './generic/DashboardCard';
 
 export const DefaultSubDomains: FunctionComponent = () => {
     const store = useContext(StoreProvider);

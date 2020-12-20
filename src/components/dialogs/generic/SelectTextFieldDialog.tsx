@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { MenuItem, Select, TextField } from "@material-ui/core";
-import { AbstractDialog, AbstractDialogProps } from "./AbstractDialog";
+import { MenuItem, Select, TextField } from '@material-ui/core';
+import { AbstractDialog, AbstractDialogProps } from './AbstractDialog';
 
 interface SelectTextFieldDialogProps extends AbstractDialogProps {
     selectData: {[key: string]: string}
@@ -46,4 +46,4 @@ export const SelectTextFieldDialog: FunctionComponent<SelectTextFieldDialogProps
             />
         </AbstractDialog>
     );
-}
+};

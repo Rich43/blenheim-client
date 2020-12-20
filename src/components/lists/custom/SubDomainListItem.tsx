@@ -1,18 +1,18 @@
-import React, { FunctionComponent, useContext } from "react";
-import { IconButton, ListItem, ListItemText } from "@material-ui/core";
-import { Edit, Remove } from "@material-ui/icons";
-import { UpdateSubDomainDialog } from "../../dialogs/custom/UpdateSubDomainDialog";
-import { useDeleteSubDomainMutation } from "../../queries/mutations/delete/DeleteSubDomainMutation";
-import { StoreProvider } from "../../../StoreProvider";
-import { Domains_settings } from "../../../types/Domains";
-import { IPInfo } from "./IPInfo";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import { TextFieldDialog } from "../../dialogs/generic/TextFieldDialog";
-import { useUpdateSubDomainIPv4Mutation } from "../../queries/mutations/update/UpdateSubDomainIPv4Mutation";
-import { useUpdateSubDomainIPv6Mutation } from "../../queries/mutations/update/UpdateSubDomainIPv6Mutation";
-import { useDeleteSubDomainIPv4Mutation } from "../../queries/mutations/delete/DeleteSubDomainIPv4Mutation";
-import { useDeleteSubDomainIPv6Mutation } from "../../queries/mutations/delete/DeleteSubDomainIPv6Mutation";
+import React, { FunctionComponent, useContext } from 'react';
+import { IconButton, ListItem, ListItemText } from '@material-ui/core';
+import { Edit, Remove } from '@material-ui/icons';
+import { UpdateSubDomainDialog } from '../../dialogs/custom/UpdateSubDomainDialog';
+import { useDeleteSubDomainMutation } from '../../queries/mutations/delete/DeleteSubDomainMutation';
+import { StoreProvider } from '../../../StoreProvider';
+import { Domains_settings } from '../../../types/Domains';
+import { IPInfo } from './IPInfo';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { TextFieldDialog } from '../../dialogs/generic/TextFieldDialog';
+import { useUpdateSubDomainIPv4Mutation } from '../../queries/mutations/update/UpdateSubDomainIPv4Mutation';
+import { useUpdateSubDomainIPv6Mutation } from '../../queries/mutations/update/UpdateSubDomainIPv6Mutation';
+import { useDeleteSubDomainIPv4Mutation } from '../../queries/mutations/delete/DeleteSubDomainIPv4Mutation';
+import { useDeleteSubDomainIPv6Mutation } from '../../queries/mutations/delete/DeleteSubDomainIPv6Mutation';
 
 export const SubDomainListItem: FunctionComponent<{
     domain: string,
@@ -20,7 +20,7 @@ export const SubDomainListItem: FunctionComponent<{
     domainsSettings: Domains_settings,
     domainIndex: number
     subdomainIndex: number,
-}> = ({subdomainIndex, domain, subdomain, domainsSettings, domainIndex}) => {
+}> = ({ subdomainIndex, domain, subdomain, domainsSettings, domainIndex }) => {
     const [dialogOpen, setDialogOpen] = React.useState<boolean>(false);
     const [IPv4DialogOpen, setIPv4DialogOpen] = React.useState<boolean>(false);
     const [IPv6DialogOpen, setIPv6DialogOpen] = React.useState<boolean>(false);
