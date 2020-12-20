@@ -17,7 +17,7 @@ const MUTATION = gql`
     }
 `;
 
-type CreateDefaultSubDomainMutationType = (variables: CreateDefaultSubDomain) =>
+type CreateDefaultSubDomainMutationType = () =>
     MutationTuple<CreateDefaultSubDomain, CreateDefaultSubDomainVariables>;
 export const useCreateDefaultSubDomainMutation: CreateDefaultSubDomainMutationType =
     () => useMutation<CreateDefaultSubDomain, CreateDefaultSubDomainVariables>(MUTATION);
