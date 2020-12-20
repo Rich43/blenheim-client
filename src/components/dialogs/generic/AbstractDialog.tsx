@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
 export interface AbstractDialogProps {
     dialogOpen: boolean;

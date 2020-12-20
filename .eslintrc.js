@@ -60,7 +60,7 @@ module.exports = {
         indent: ['error', 4],
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': ['error', 4],
-        'react/prop-types': ['error', { ignore: ['children'] }],
+        'react/prop-types': [0],
         semi: ['error', 'always'],
         'space-before-function-paren': ['error', 'never'],
         'no-use-before-define': [0],

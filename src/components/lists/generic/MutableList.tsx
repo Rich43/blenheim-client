@@ -16,7 +16,8 @@ import React, { FunctionComponent, useEffect, useState } from 'react';
 import { TextFieldDialog } from '../../dialogs/generic/TextFieldDialog';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-const useStyles = makeStyles<Theme, {}>(() => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+const useStyles = makeStyles<Theme, { }>(() => {
     return ({
         list: {
             maxHeight: 300,

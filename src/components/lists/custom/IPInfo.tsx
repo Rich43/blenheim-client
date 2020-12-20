@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { FunctionComponent } from 'react';
 import { Domains_settings } from '../../../types/Domains';
 import { Box, IconButton, Popover, Typography } from '@material-ui/core';

@@ -1,4 +1,5 @@
-import { Domains_settings, Domains_settings_domains } from "../types/Domains";
+/* eslint-disable camelcase */
+import { Domains_settings, Domains_settings_domains } from '../types/Domains';
 
 export interface DomainsListProps {
     domainsSettings: Domains_settings;
@@ -21,5 +22,5 @@ export function createDomainMap(domains: DomainsArray) {
             }
         }
     }
-    return {domainMap, firstDomain};
+    return { domainMap, firstDomain };
 }

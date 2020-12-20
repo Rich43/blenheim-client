@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React, { FunctionComponent, useContext } from 'react';
 import { IconButton, ListItem, ListItemText } from '@material-ui/core';
 import { Edit, Remove } from '@material-ui/icons';
