@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { useMutation } from '@apollo/react-hooks';
-import { AddDomain, AddDomainVariables } from "../../../../types/AddDomain";
+import gql from 'graphql-tag';
+import { AddDomain, AddDomainVariables } from '../../../../types/AddDomain';
+import { useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation AddDomain($token: String!, $id: ID!) {

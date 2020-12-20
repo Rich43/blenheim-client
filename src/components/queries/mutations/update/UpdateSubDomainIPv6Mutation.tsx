@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { useMutation } from '@apollo/react-hooks';
-import { UpdateSubDomainIPv6, UpdateSubDomainIPv6Variables } from "../../../../types/UpdateSubDomainIPv6";
+import gql from 'graphql-tag';
+import { UpdateSubDomainIPv6, UpdateSubDomainIPv6Variables } from '../../../../types/UpdateSubDomainIPv6';
+import { useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation UpdateSubDomainIPv6($token: String!, $id: ID!, $index: Int!, $name: String!) {

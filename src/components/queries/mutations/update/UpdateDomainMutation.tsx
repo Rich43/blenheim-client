@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { useMutation } from '@apollo/react-hooks';
-import { UpdateDomain, UpdateDomainVariables } from "../../../../types/UpdateDomain";
+import gql from 'graphql-tag';
+import { UpdateDomain, UpdateDomainVariables } from '../../../../types/UpdateDomain';
+import { useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation UpdateDomain($token: String!, $id: ID!, $newName: String!) {

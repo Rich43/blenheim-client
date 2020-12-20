@@ -1,9 +1,7 @@
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
-import { DataProxy } from 'apollo-cache';
-import { FetchResult } from "react-apollo";
-import { AddDomain } from "../../types/AddDomain";
-import { Domains, DomainsVariables } from "../../types/Domains";
+import { AddDomain } from '../../types/AddDomain';
+import { Domains, DomainsVariables } from '../../types/Domains';
+import { DataProxy, FetchResult, useQuery } from '@apollo/client';
 
 const QUERY = gql`
     query Domains($token: String!) {
@@ -27,16 +25,16 @@ const QUERY = gql`
 `;
 
 export const useDomainsQuery = (variables: DomainsVariables) =>
-    useQuery<Domains, DomainsVariables>(QUERY, {partialRefetch: true, variables});
+    useQuery<Domains, DomainsVariables>(QUERY, { partialRefetch: true, variables });
 
 export const updateDomainsCache =
     (queryName: string, token: string) =>
         (cache: DataProxy, fetchResult: FetchResult<AddDomain, Record<string, any>, Record<string, any>>) => {
-            const {data} = fetchResult;
+            const { data } = fetchResult;
             const domainsQuery = cache.readQuery<Domains, DomainsVariables>(
                 {
                     query: QUERY,
-                    variables: {token: token}
+                    variables: { token: token }
                 }
             );
             if (domainsQuery && data && data.settings) {

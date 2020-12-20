@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { useMutation } from '@apollo/react-hooks';
-import { DeleteSubDomain, DeleteSubDomainVariables } from "../../../../types/DeleteSubDomain";
+import gql from 'graphql-tag';
+import { DeleteSubDomain, DeleteSubDomainVariables } from '../../../../types/DeleteSubDomain';
+import { useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation DeleteSubDomain($token: String!, $id: ID!, $index: Int!) {

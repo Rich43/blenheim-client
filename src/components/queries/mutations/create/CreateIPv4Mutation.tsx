@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { useMutation } from '@apollo/react-hooks';
-import { CreateIPv4, CreateIPv4Variables } from "../../../../types/CreateIPv4";
+import gql from 'graphql-tag';
+import { CreateIPv4, CreateIPv4Variables } from '../../../../types/CreateIPv4';
+import { useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation CreateIPv4($token: String!, $id: ID!) {

@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { useMutation } from '@apollo/react-hooks';
-import { DeleteIPv4, DeleteIPv4Variables } from "../../../../types/DeleteIPv4";
+import gql from 'graphql-tag';
+import { DeleteIPv4, DeleteIPv4Variables } from '../../../../types/DeleteIPv4';
+import { useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation DeleteIPv4($token: String!, $index: Int!) {
