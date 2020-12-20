@@ -21,7 +21,7 @@ export class Store {
         });
     }
 
-    get token() {
+    get token(): string {
         return nullCheck(this.store.authentication.token);
     }
 
@@ -30,7 +30,7 @@ export class Store {
         window.sessionStorage.setItem('token', value);
     }
 
-    get user() {
+    get user(): string {
         return nullCheck(this.store.authentication.user);
     }
 
