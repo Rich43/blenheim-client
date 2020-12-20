@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { UpdateSubDomainIPv4, UpdateSubDomainIPv4Variables } from '../../../../types/UpdateSubDomainIPv4';
-import { useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation UpdateSubDomainIPv4($token: String!, $id: ID!, $index: Int!, $name: String!) {
@@ -20,4 +20,6 @@ const MUTATION = gql`
     }
 `;
 
-export const useUpdateSubDomainIPv4Mutation = () => useMutation<UpdateSubDomainIPv4, UpdateSubDomainIPv4Variables>(MUTATION);
+type UpdateSubDomainIPv4MutationType = () => MutationTuple<UpdateSubDomainIPv4, UpdateSubDomainIPv4Variables>;
+export const useUpdateSubDomainIPv4Mutation: UpdateSubDomainIPv4MutationType =
+    () => useMutation<UpdateSubDomainIPv4, UpdateSubDomainIPv4Variables>(MUTATION);
