@@ -62,6 +62,8 @@ module.exports = {
         'react/jsx-indent-props': ['error', 4],
         'react/prop-types': ['error', { ignore: ['children'] }],
         semi: ['error', 'always'],
-        'space-before-function-paren': ['error', 'never']
+        'space-before-function-paren': ['error', 'never'],
+        'no-use-before-define': [0],
+        '@typescript-eslint/no-use-before-define': [1]
     }
 };

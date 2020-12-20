@@ -10,7 +10,8 @@ import InfoIcon from '@material-ui/icons/Info';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { useLazyQuery } from '@apollo/client';
 
-const useStyles = makeStyles<Theme, {}>((theme) => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+const useStyles = makeStyles<Theme, { }>((theme) => {
     return ({
         icon: {
             paddingRight: theme.spacing(1)
