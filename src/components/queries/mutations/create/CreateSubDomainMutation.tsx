@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { Subdomain, SubdomainVariables } from '../../../../types/Subdomain';
-import { useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
 
 export const MUTATION = gql`
     mutation Subdomain($id: ID!, $name: String!, $token: String!) {
@@ -20,4 +20,5 @@ export const MUTATION = gql`
     }
 `;
 
-export const useCreateSubDomainMutation = () => useMutation<Subdomain, SubdomainVariables>(MUTATION);
+type CreateSubDomainMutationType = () => MutationTuple<Subdomain, SubdomainVariables>;
+export const useCreateSubDomainMutation: CreateSubDomainMutationType = () => useMutation<Subdomain, SubdomainVariables>(MUTATION);
