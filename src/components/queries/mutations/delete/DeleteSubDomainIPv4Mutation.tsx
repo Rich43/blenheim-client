@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { DeleteSubDomainIPv4, DeleteSubDomainIPv4Variables } from '../../../../types/DeleteSubDomainIPv4';
-import { useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
     mutation DeleteSubDomainIPv4($token: String!, $id: ID!, $index: Int!) {
@@ -20,4 +20,6 @@ const MUTATION = gql`
     }
 `;
 
-export const useDeleteSubDomainIPv4Mutation = () => useMutation<DeleteSubDomainIPv4, DeleteSubDomainIPv4Variables>(MUTATION);
+type DeleteSubDomainIPv4MutationType = () => MutationTuple<DeleteSubDomainIPv4, DeleteSubDomainIPv4Variables>;
+export const useDeleteSubDomainIPv4Mutation: DeleteSubDomainIPv4MutationType =
+    () => useMutation<DeleteSubDomainIPv4, DeleteSubDomainIPv4Variables>(MUTATION);
