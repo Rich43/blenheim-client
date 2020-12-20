@@ -20,7 +20,7 @@ export const Domains: FunctionComponent = () => {
             title='Domains (First 5)'
             linkText='Configure domains'
             redirectURL={DOMAINS}
-            renderListItem={(domain, count) => {
+            renderListItem={() => {
                 const domainsList = (
                     <>
                         <DomainsList
