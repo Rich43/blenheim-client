@@ -9,7 +9,7 @@ server {
         try_files $uri $uri/ /index.html;
     }
 
-    location /graphql {
-        proxy_pass http://${BLENHEIM_SERVER_HOST}:8000;
+    location /graphql/ {
+        proxy_pass http://${BLENHEIM_SERVER_HOST}:8000/;
     }
 }
