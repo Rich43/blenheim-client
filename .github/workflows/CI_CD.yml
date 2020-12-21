@@ -27,6 +27,9 @@ jobs:
       #          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       #      - name: Save DigitalOcean kubeconfig
       #        run: doctl kubernetes cluster kubeconfig save archesky-cluster
+      - name: Set up Docker Buildx
+        id: setup_build_x
+        uses: docker/setup-buildx-action@v1
       - name: npm install
         id: npm_install
         run: npm i
