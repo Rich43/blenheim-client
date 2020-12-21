@@ -56,19 +56,21 @@ export const Login: React.FC = observer((): JSX.Element => {
         { fetchPolicy: 'no-cache' }
     );
 
-    if (data && data.authentication) {
-        const token = data.authentication.login;
-        if (token) {
-            store.token = token;
-            store.user = username;
-            setLogIn(false);
-            history.push(HOME);
-        } else {
-            store.token = '';
-            store.user = '';
-            setLogIn(false);
+    useEffect(() => {
+        if (data && data.authentication) {
+            const token = data.authentication.login;
+            if (token) {
+                store.token = token;
+                store.user = username;
+                setLogIn(false);
+                history.push(HOME);
+            } else {
+                store.token = '';
+                store.user = '';
+                setLogIn(false);
+            }
         }
-    }
+    }, [data]);
 
     useEffect(() => {
         if (logIn) {
