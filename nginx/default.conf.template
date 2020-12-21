@@ -12,4 +12,8 @@ server {
     location /graphql {
         proxy_pass http://${BLENHEIM_SERVER_HOST}:8000/graphql;
     }
+
+    location /graphql/ {
+        proxy_pass http://${BLENHEIM_SERVER_HOST}:8000/graphql;
+    }
 }
