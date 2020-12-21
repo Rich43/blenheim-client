@@ -5,6 +5,7 @@ import { Domains } from '../panels/Domains';
 import { DefaultSubDomains } from '../panels/DefaultSubDomains';
 
 export const Home: React.FC = (): JSX.Element => {
+    console.log('render');
     return (
         <Container component='main'>
             <Grid container spacing={2}>

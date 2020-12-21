@@ -11,11 +11,11 @@ import { StoreProvider } from '../../StoreProvider';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { observer } from 'mobx-react-lite';
-import useReactRouter from 'use-react-router';
 import { HOME } from '../../App';
 import { Login as LoginType, LoginVariables } from '../../types/Login';
 import { useLazyQuery } from '@apollo/client';
 import { LOGIN_QUERY } from '../queries/LoginQuery';
+import { useHistory } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 const useStyles = makeStyles<Theme, { }>((theme) => {
@@ -46,11 +46,11 @@ const useStyles = makeStyles<Theme, { }>((theme) => {
 
 export const Login: React.FC = observer((): JSX.Element => {
     const classes = useStyles();
+    const history = useHistory();
     const store = useContext(StoreProvider);
     const [logIn, setLogIn] = React.useState(false);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const { history } = useReactRouter();
     const [getLogin, { loading, error, data }] = useLazyQuery<LoginType, LoginVariables>(
         LOGIN_QUERY,
         { fetchPolicy: 'no-cache' }

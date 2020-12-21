@@ -2,11 +2,11 @@ import React, { FunctionComponent, useContext } from 'react';
 import { createStyles, IconButton } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import useReactRouter from 'use-react-router';
 import { StoreProvider } from '../../StoreProvider';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { deepPurple } from '@material-ui/core/colors';
 import Avatar from '@material-ui/core/Avatar';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -17,7 +17,7 @@ const useStyles = makeStyles(() =>
 );
 
 export const UserButton: FunctionComponent = () => {
-    const { history } = useReactRouter();
+    const history = useHistory();
     const [menuEl, setMenuEl] = React.useState<null | HTMLElement>(null);
     const id = menuEl ? 'avatar-menu' : undefined;
     const store = useContext(StoreProvider);

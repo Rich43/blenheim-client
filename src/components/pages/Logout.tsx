@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import useReactRouter from 'use-react-router';
 import { StoreProvider } from '../../StoreProvider';
+import { useHistory } from 'react-router-dom';
 
 export const Logout: React.FC = (): JSX.Element => {
-    const { history } = useReactRouter();
+    const history = useHistory();
     const store = useContext(StoreProvider);
     store.user = '';
     store.token = '';

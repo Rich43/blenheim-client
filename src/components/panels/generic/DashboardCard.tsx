@@ -6,9 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import List from '@material-ui/core/List';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import useReactRouter from 'use-react-router';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { Theme } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 const useStyles = makeStyles<Theme, { }>(() => {
@@ -29,7 +29,7 @@ export const DashboardCard: FunctionComponent<{
     list: string[];
     linkText: string;
 }> = ({ title, redirectURL, renderListItem, list, linkText }) => {
-    const { history } = useReactRouter();
+    const history = useHistory();
     const styles = useStyles();
 
     let count = 1;

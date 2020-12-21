@@ -10,7 +10,7 @@ import { Logo } from '../Logo';
 import Close from '@material-ui/icons/Close';
 import Box from '@material-ui/core/Box';
 import { DOMAINS, HOME, LOGOUT, SETTINGS } from '../../App';
-import useReactRouter from 'use-react-router';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
     list: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 
 export const SideDrawer: FunctionComponent = () => {
     const [open, setOpen] = useState(false);
-    const { history } = useReactRouter();
+    const history = useHistory();
     const classes = useStyles();
     const menu = [
         [HOME, 'Home'],
