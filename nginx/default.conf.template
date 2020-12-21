@@ -10,7 +10,6 @@ server {
     }
 
     location /graphql {
-        rewrite ^.*\/graphql$ /;
         proxy_pass http://${BLENHEIM_SERVER_HOST}:8000;
     }
 }
