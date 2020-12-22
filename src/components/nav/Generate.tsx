@@ -30,23 +30,29 @@ export const Generate: FunctionComponent = () => {
         { variables: { token: store.token }, fetchPolicy: 'no-cache' }
     );
 
-    if (loading) {
-        setError(false);
-        setResult('Loading...');
-    }
+    useEffect(() => {
+        if (loading) {
+            setError(false);
+            setResult('Loading...');
+        }
+    }, [loading]);
 
-    if (queryError) {
-        setError(true);
-        setResult(queryError.message || '');
-    }
+    useEffect(() => {
+        if (queryError) {
+            setError(true);
+            setResult(queryError.message || '');
+        }
+    }, [queryError]);
 
-    if (data && data.dns.generate.success) {
-        setError(false);
-        setResult('Generated.');
-    } else if (data && !data.dns.generate.success) {
-        setError(true);
-        setResult((data && data.dns.generate.error) || '');
-    }
+    useEffect(() => {
+        if (data && data.dns.generate.success) {
+            setError(false);
+            setResult('Generated.');
+        } else if (data && !data.dns.generate.success) {
+            setError(true);
+            setResult((data && data.dns.generate.error) || '');
+        }
+    }, [data]);
 
     useEffect(() => {
         if (dialogOpen) {
