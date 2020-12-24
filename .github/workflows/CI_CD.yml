@@ -21,12 +21,12 @@ jobs:
       - name: Checkout code
         id: checkout_code
         uses: actions/checkout@v2
-      #      - name: Install doctl
-      #        uses: digitalocean/action-doctl@v2
-      #        with:
-      #          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      #      - name: Save DigitalOcean kubeconfig
-      #        run: doctl kubernetes cluster kubeconfig save archesky-cluster
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Save DigitalOcean kubeconfig
+        run: doctl kubernetes cluster kubeconfig save archesky-cluster
       - name: Set up Docker Buildx
         id: setup_build_x
         uses: docker/setup-buildx-action@v1
@@ -83,9 +83,9 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/${{ github.event.repository.name }}:0.0.${{ github.run_id }}-SNAPSHOT
             ghcr.io/rich43/${{ github.event.repository.name }}:latest
             ghcr.io/rich43/${{ github.event.repository.name }}:0.0.${{ github.run_id }}-SNAPSHOT
-#      - name: Delete old deployment
-#        id: delete_deploy
-#        run: kubectl delete -n default deployment auth-server
-#      - name: Deploy
-#        id: deploy
-#        run: kubectl apply -f ./auth-server-deployment.yaml
+      - name: Delete old deployment
+        id: delete_deploy
+        run: kubectl delete -n default deployment blenheim-client
+      - name: Deploy
+        id: deploy
+        run: kubectl apply -f ./blenheim-client-deployment.yaml
