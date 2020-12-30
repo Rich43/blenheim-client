@@ -92,7 +92,7 @@ jobs:
           script: |
             cd
             git clone https://github.com/Rich43/blenheim-docker
-            cd blenheim-docker/chat
+            cd blenheim-docker
             ./run.sh
             cd
             rm -rfv blenheim-docker
