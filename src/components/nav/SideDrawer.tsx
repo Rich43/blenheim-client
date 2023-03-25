@@ -44,7 +44,7 @@ export const SideDrawer: FunctionComponent = () => {
                         </IconButton>
                     </Box>
                     <Box display='flex' flexDirection='row' justifyContent='center'>
-                        <Logo className={classes.logo} viewBox='0 0 280 211' />
+                        <Logo style={classes.logo} viewBox='0 0 280 211' />
                     </Box>
                     <List style={classes.list}>
                         {menu.map(item => {
