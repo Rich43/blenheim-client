@@ -1,44 +1,36 @@
 import React, { FunctionComponent, useContext } from 'react';
-import { createStyles, IconButton } from '@material-ui/core';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import { StoreProvider } from '../../StoreProvider';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import { deepPurple } from '@material-ui/core/colors';
-import Avatar from '@material-ui/core/Avatar';
-import { useHistory } from 'react-router-dom';
+import { deepPurple } from '@mui/material/colors';
+import { redirect } from 'react-router-dom';
+import { LOGOUT } from '../../App';
+import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        avatar: {
-            backgroundColor: deepPurple[500]
-        }
-    })
-);
+const classes: { [key: string]: React.CSSProperties } = {
+    avatar: {
+        backgroundColor: deepPurple[500]
+    }
+};
 
 export const UserButton: FunctionComponent = () => {
-    const history = useHistory();
     const [menuEl, setMenuEl] = React.useState<null | HTMLElement>(null);
     const id = menuEl ? 'avatar-menu' : undefined;
     const store = useContext(StoreProvider);
-    const classes = useStyles();
 
     function handleLogout() {
         setMenuEl(null);
-        history.push('/logout');
+        redirect(LOGOUT);
     }
 
     return (
         <>
             <IconButton aria-describedby={id} onClick={event => setMenuEl(event.currentTarget)}>
-                <Avatar className={classes.avatar}>{store.user.substr(0, 2).toUpperCase()}</Avatar>
+                <Avatar style={classes.avatar}>{store.user.substr(0, 2).toUpperCase()}</Avatar>
             </IconButton>
             <Menu
                 id={id}
                 anchorEl={menuEl}
                 open={Boolean(menuEl)}
                 onClose={() => setMenuEl(null)}
-                getContentAnchorEl={null}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'center'

@@ -1,12 +1,9 @@
-import gql from 'graphql-tag';
 import { CreateIPv6, CreateIPv6Variables } from '../../../../types/CreateIPv6';
-import { MutationTuple, useMutation } from '@apollo/client';
+import { gql, MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
-    mutation CreateIPv6($token: String!, $id: ID!) {
-        authentication {
-            token(token: $token)
-        }
+    mutation CreateIPv6($id: ID!) {
+
         settings {
             createIpv6(id: $id) {
                 ipv4

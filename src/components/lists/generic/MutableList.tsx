@@ -1,3 +1,5 @@
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { TextFieldDialog } from '../../dialogs/generic/TextFieldDialog';
 import {
     Box,
     IconButton,
@@ -6,25 +8,19 @@ import {
     ListItemSecondaryAction,
     ListItemText,
     ListSubheader,
-    TextField,
-    Theme
-} from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import AddIcon from '@material-ui/icons/Add';
-import React, { FunctionComponent, useEffect, useState } from 'react';
-import { TextFieldDialog } from '../../dialogs/generic/TextFieldDialog';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+    TextField
+} from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-const useStyles = makeStyles<Theme, { }>(() => {
-    return ({
-        list: {
-            maxHeight: 300,
-            overflow: 'auto'
-        }
-    });
-});
+const classes: { [key: string]: React.CSSProperties } = {
+    list: {
+        maxHeight: 300,
+        overflow: 'auto'
+    }
+};
 
 export const MutableList: FunctionComponent<{
     subheaderText: string;
@@ -37,16 +33,16 @@ export const MutableList: FunctionComponent<{
     onUpdate: (value: string, index: number) => void;
     onDelete: (index: number) => void;
 }> = ({
-    subheaderText,
-    placeholderText,
-    dialogTitle,
-    dialogTextBoxLabel,
-    dialogContentText,
-    listItems,
-    onCreate,
-    onUpdate,
-    onDelete
-}) => {
+          subheaderText,
+          placeholderText,
+          dialogTitle,
+          dialogTextBoxLabel,
+          dialogContentText,
+          listItems,
+          onCreate,
+          onUpdate,
+          onDelete
+      }) => {
     const [items, setItems] = useState(listItems);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [scroll, setScroll] = useState(false);
@@ -55,7 +51,6 @@ export const MutableList: FunctionComponent<{
     const [textFieldValue, setTextFieldValue] = useState('');
     const [rowIndex, setRowIndex] = useState(0);
     const listRef = React.createRef<HTMLUListElement>();
-    const classes = useStyles();
 
     useEffect(() => {
         if (scroll) {
@@ -93,28 +88,30 @@ export const MutableList: FunctionComponent<{
                     {subheaderText}
                 </ListSubheader>
             )}
-            className={classes.list}
+            style={classes.list}
             ref={listRef}
         >
             {
                 items.map((item, index) => {
                     return (
                         <ListItem>
-                            <ListItemText primary={item} />
+                            <ListItemText primary={item}/>
                             <ListItemSecondaryAction>
                                 <IconButton onClick={() => {
                                     setRowIndex(index);
                                     setEditText(item);
                                     setOriginalEditText(item);
                                     setDialogOpen(true);
-                                }} edge='end' aria-label='edit'>
-                                    <EditIcon />
+                                }} edge="end" aria-label="edit">
+                                    <EditIcon/>
                                 </IconButton>
                                 <IconButton onClick={() => {
-                                    setItems(items.filter((value, idx) => { return idx !== index; }));
+                                    setItems(items.filter((value, idx) => {
+                                        return idx !== index;
+                                    }));
                                     onDelete(index);
-                                }} edge='end' aria-label='delete'>
-                                    <DeleteIcon />
+                                }} edge="end" aria-label="delete">
+                                    <DeleteIcon/>
                                 </IconButton>
                             </ListItemSecondaryAction>
                         </ListItem>
@@ -122,7 +119,7 @@ export const MutableList: FunctionComponent<{
                 })
             }
         </List>
-        <Box p={2} display='flex' flexDirection='row'>
+        <Box p={2} display="flex" flexDirection="row">
             <TextField
                 placeholder={placeholderText}
                 fullWidth
@@ -135,8 +132,8 @@ export const MutableList: FunctionComponent<{
                     }
                 }}
             />
-            <IconButton onClick={() => create()} edge='end' aria-label='add'>
-                <AddIcon />
+            <IconButton onClick={() => create()} edge="end" aria-label="add">
+                <AddIcon/>
             </IconButton>
         </Box>
     </>;

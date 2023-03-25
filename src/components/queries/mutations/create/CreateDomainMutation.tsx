@@ -1,12 +1,9 @@
-import gql from 'graphql-tag';
 import { AddDomain, AddDomainVariables } from '../../../../types/AddDomain';
-import { MutationTuple, useMutation } from '@apollo/client';
+import { gql, MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
-    mutation AddDomain($token: String!, $id: ID!) {
-        authentication {
-            token(token: $token)
-        }
+    mutation AddDomain($id: ID!) {
+
         settings {
             createDomain(id: $id, subdomains: []) {
                 id

@@ -1,10 +1,7 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 export const QUERY = gql`
-    query Dns($token: String!) {
-        authentication {
-            token(token: $token)
-        }
+    query Dns {
         dns {
             generate {
                 code

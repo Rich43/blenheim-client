@@ -1,26 +1,16 @@
 import React, { FunctionComponent } from 'react';
-
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import List from '@material-ui/core/List';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import { Theme } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Button, Card, CardActions, CardContent, CardHeader, List } from '@mui/material';
+import { redirect } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-const useStyles = makeStyles<Theme, { }>(() => {
-    return ({
-        card: {
-            minHeight: 175
-        },
-        cardHeader: {
-            minHeight: 75
-        }
-    });
-});
+const classes: { [key: string]: React.CSSProperties } = {
+    card: {
+        minHeight: 175
+    },
+    cardHeader: {
+        minHeight: 75
+    }
+};
 
 export const DashboardCard: FunctionComponent<{
     title: string;
@@ -28,15 +18,12 @@ export const DashboardCard: FunctionComponent<{
     renderListItem: (listItem: string, count: number) => JSX.Element;
     list: string[];
     linkText: string;
-}> = ({ title, redirectURL, renderListItem, list, linkText }) => {
-    const history = useHistory();
-    const styles = useStyles();
-
+}> = ({title, redirectURL, renderListItem, list, linkText}) => {
     let count = 1;
     return (
         <Card>
-            <CardHeader title={title} className={styles.cardHeader}/>
-            <CardContent className={styles.card}>
+            <CardHeader title={title} style={classes.cardHeader}/>
+            <CardContent style={classes.card}>
                 <List>
                     {list.map(listItem => {
                         if (listItem && count <= 5) {
@@ -49,7 +36,7 @@ export const DashboardCard: FunctionComponent<{
                 </List>
             </CardContent>
             <CardActions>
-                <Button size='small' href='' onClick={() => history.push(redirectURL)}>{linkText}</Button>
+                <Button size="small" href="" onClick={() => redirect(redirectURL)}>{linkText}</Button>
             </CardActions>
         </Card>
     );

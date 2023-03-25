@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
 import React, { FunctionComponent } from 'react';
 import { Domains_settings } from '../../../types/Domains';
-import { Box, IconButton, Popover, Typography } from '@material-ui/core';
-import { Info } from '@material-ui/icons';
+import { Box, IconButton, Popover, Typography } from '@mui/material';
+import { Info } from '@mui/icons-material';
 
 export const IPInfo: FunctionComponent<{
     domainsSettings: Domains_settings;

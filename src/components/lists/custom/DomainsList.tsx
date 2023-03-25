@@ -1,10 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
-import { Button, Collapse, IconButton, List, ListItem, ListItemText, Typography } from '@material-ui/core';
-import { ExpandLess, ExpandMore } from '@material-ui/icons';
 import { DomainsListProps } from '../../common';
 import { CreateSubDomainDialog } from '../../dialogs/custom/CreateSubDomainDialog';
 import { SubDomainListItem } from './SubDomainListItem';
 import { IPInfo } from './IPInfo';
+import { Button, Collapse, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { ExpandLess, ExpandMore } from '@mui/icons-material';
 
 export const DomainsList: FunctionComponent<DomainsListProps> =
     ({

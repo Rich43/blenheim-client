@@ -1,19 +1,17 @@
 /* eslint-disable camelcase */
 import React, { FunctionComponent, useContext } from 'react';
-import { IconButton, ListItem, ListItemText } from '@material-ui/core';
-import { Edit, Remove } from '@material-ui/icons';
 import { UpdateSubDomainDialog } from '../../dialogs/custom/UpdateSubDomainDialog';
 import { useDeleteSubDomainMutation } from '../../queries/mutations/delete/DeleteSubDomainMutation';
 import { StoreProvider } from '../../../StoreProvider';
 import { Domains_settings } from '../../../types/Domains';
 import { IPInfo } from './IPInfo';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import { TextFieldDialog } from '../../dialogs/generic/TextFieldDialog';
 import { useUpdateSubDomainIPv4Mutation } from '../../queries/mutations/update/UpdateSubDomainIPv4Mutation';
 import { useUpdateSubDomainIPv6Mutation } from '../../queries/mutations/update/UpdateSubDomainIPv6Mutation';
 import { useDeleteSubDomainIPv4Mutation } from '../../queries/mutations/delete/DeleteSubDomainIPv4Mutation';
 import { useDeleteSubDomainIPv6Mutation } from '../../queries/mutations/delete/DeleteSubDomainIPv6Mutation';
+import { IconButton, ListItem, ListItemText, Menu, MenuItem } from '@mui/material';
+import { Edit, Remove } from '@mui/icons-material';
 
 export const SubDomainListItem: FunctionComponent<{
     domain: string,
@@ -103,7 +101,6 @@ export const SubDomainListItem: FunctionComponent<{
                 anchorEl={editMenuEl}
                 open={Boolean(editMenuEl)}
                 onClose={() => setEditMenuEl(null)}
-                getContentAnchorEl={null}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'center'
@@ -131,7 +128,6 @@ export const SubDomainListItem: FunctionComponent<{
                 anchorEl={deleteMenuEl}
                 open={Boolean(deleteMenuEl)}
                 onClose={() => setDeleteMenuEl(null)}
-                getContentAnchorEl={null}
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'center'

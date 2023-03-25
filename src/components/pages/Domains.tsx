@@ -1,33 +1,25 @@
 import React, { FunctionComponent, useContext } from 'react';
-import List from '@material-ui/core/List';
 import { useDomainsQuery } from '../queries/DomainsQuery';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import { DomainsList } from '../lists/custom/DomainsList';
-import Fab from '@material-ui/core/Fab';
-import { MoreVert } from '@material-ui/icons';
-import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { StoreProvider } from '../../StoreProvider';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import { CreateDomainDialog } from '../dialogs/custom/CreateDomainDialog';
 import { DeleteDomainDialog } from '../dialogs/custom/DeleteDomainDialog';
 import { UpdateDomainDialog } from '../dialogs/custom/UpdateDomainDialog';
+import { Fab, List, ListSubheader, Menu, MenuItem } from '@mui/material';
+import { MoreVert } from '@mui/icons-material';
 
 export const Domains: FunctionComponent = () => {
-    const useStyles = makeStyles((theme: Theme) =>
-        createStyles({
-            fab: {
-                position: 'fixed',
-                bottom: theme.spacing(4),
-                right: theme.spacing(4)
-            }
-        })
-    );
-    const classes = useStyles();
+    const classes: { [key: string]: React.CSSProperties } = {
+        fab: {
+            position: 'fixed',
+            bottom: 4,
+            right: 4
+        }
+    };
     const store = useContext(StoreProvider);
     const [menuEl, setMenuEl] = React.useState<null | HTMLElement>(null);
     const id = menuEl ? 'domain-menu' : undefined;
-    const domains = useDomainsQuery({ token: store.token });
+    const domains = useDomainsQuery({token: store.token});
     const domainsSettings = domains.data && domains.data.settings;
     const domainsSettingsDomains = (domainsSettings && domainsSettings.domains) || null;
     const [addDomainDialogOpen, setAddDomainDialogOpen] = React.useState<boolean>(false);
@@ -55,8 +47,8 @@ export const Domains: FunctionComponent = () => {
                 })}
             </List>
 
-            <Fab className={classes.fab} color='secondary' onClick={event => setMenuEl(event.currentTarget)}>
-                <MoreVert />
+            <Fab style={classes.fab} color="secondary" onClick={event => setMenuEl(event.currentTarget)}>
+                <MoreVert/>
             </Fab>
 
             <Menu
@@ -64,7 +56,6 @@ export const Domains: FunctionComponent = () => {
                 anchorEl={menuEl}
                 open={Boolean(menuEl)}
                 onClose={() => setMenuEl(null)}
-                getContentAnchorEl={null}
                 anchorOrigin={{
                     vertical: -24,
                     horizontal: 'center'
@@ -87,9 +78,11 @@ export const Domains: FunctionComponent = () => {
                     setDeleteDomainDialogOpen(true);
                 }}>Remove Domain</MenuItem>
             </Menu>
-            <CreateDomainDialog dialogOpen={addDomainDialogOpen} onClose={() => setAddDomainDialogOpen(false)} />
-            <UpdateDomainDialog dialogOpen={editDomainDialogOpen} onClose={() => setEditDomainDialogOpen(false)} domains={domainsSettingsDomains} />
-            <DeleteDomainDialog dialogOpen={deleteDomainDialogOpen} onClose={() => setDeleteDomainDialogOpen(false)} domains={domainsSettingsDomains} />
+            <CreateDomainDialog dialogOpen={addDomainDialogOpen} onClose={() => setAddDomainDialogOpen(false)}/>
+            <UpdateDomainDialog dialogOpen={editDomainDialogOpen} onClose={() => setEditDomainDialogOpen(false)}
+                                domains={domainsSettingsDomains}/>
+            <DeleteDomainDialog dialogOpen={deleteDomainDialogOpen} onClose={() => setDeleteDomainDialogOpen(false)}
+                                domains={domainsSettingsDomains}/>
         </>
     );
 };

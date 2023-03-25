@@ -1,12 +1,9 @@
-import gql from 'graphql-tag';
 import { UpdateSubDomain, UpdateSubDomainVariables } from '../../../../types/UpdateSubDomain';
-import { MutationTuple, useMutation } from '@apollo/client';
+import { gql, MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
-    mutation UpdateSubDomain($token: String!, $id: ID!, $index: Int!, $name: String!) {
-        authentication {
-            token(token: $token)
-        }
+    mutation UpdateSubDomain($id: ID!, $index: Int!, $name: String!) {
+
         settings {
             updateSubDomain(id: $id, index: $index, name: $name) {
                 id

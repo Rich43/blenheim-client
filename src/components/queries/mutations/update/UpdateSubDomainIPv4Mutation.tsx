@@ -1,12 +1,9 @@
-import gql from 'graphql-tag';
 import { UpdateSubDomainIPv4, UpdateSubDomainIPv4Variables } from '../../../../types/UpdateSubDomainIPv4';
-import { MutationTuple, useMutation } from '@apollo/client';
+import { gql, MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
-    mutation UpdateSubDomainIPv4($token: String!, $id: ID!, $index: Int!, $name: String!) {
-        authentication {
-            token(token: $token)
-        }
+    mutation UpdateSubDomainIPv4($id: ID!, $index: Int!, $name: String!) {
+
         settings {
             updateSubDomainIpAddressV4(id: $id, index: $index, name: $name) {
                 id

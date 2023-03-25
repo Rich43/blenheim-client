@@ -1,12 +1,9 @@
-import gql from 'graphql-tag';
 import { CreateDefaultSubDomain, CreateDefaultSubDomainVariables } from '../../../../types/CreateDefaultSubDomain';
-import { MutationTuple, useMutation } from '@apollo/client';
+import { gql, MutationTuple, useMutation } from '@apollo/client';
 
 const MUTATION = gql`
-    mutation CreateDefaultSubDomain($token: String!, $id: ID!) {
-        authentication {
-            token(token: $token)
-        }
+    mutation CreateDefaultSubDomain($id: ID!) {
+
         settings {
             createDefaultSubDomain(id: $id) {
                 ipv4

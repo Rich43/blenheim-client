@@ -1,15 +1,11 @@
-import gql from 'graphql-tag';
 import { AddDomain } from '../../types/AddDomain';
 import { Domains, DomainsVariables } from '../../types/Domains';
-import { DataProxy, FetchResult, QueryResult, useQuery } from '@apollo/client';
+import { DataProxy, FetchResult, gql, QueryResult, useQuery } from '@apollo/client';
 import { DeleteDomain } from '../../types/DeleteDomain';
 import { UpdateDomain } from '../../types/UpdateDomain';
 
 const QUERY = gql`
-    query Domains($token: String!) {
-        authentication {
-            token(token: $token)
-        }
+    query Domains {
         settings {
             domains {
                 id

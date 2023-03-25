@@ -1,12 +1,8 @@
-import gql from 'graphql-tag';
 import { Settings, SettingsVariables } from '../../types/Settings';
-import { QueryResult, useQuery } from '@apollo/client';
+import { gql, QueryResult, useQuery } from '@apollo/client';
 
 const QUERY = gql`
-    query Settings($token: String!) {
-        authentication {
-            token(token: $token)
-        }
+    query Settings {
         settings {
             defaultSubdomains
             ipv4

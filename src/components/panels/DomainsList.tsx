@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { DomainsListProps } from '../common';
-import { ListItem } from '@material-ui/core';
+import { ListItem } from '@mui/material';
 
 export const DomainsList: FunctionComponent<DomainsListProps> =
     ({
