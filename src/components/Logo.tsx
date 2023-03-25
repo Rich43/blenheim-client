@@ -1,7 +1,6 @@
 import React from 'react';
+import { createSvgIcon } from '@mui/material';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import createSvgIcon from '@material-ui/icons/utils/createSvgIcon';
 
 export const Logo = createSvgIcon(
     (
