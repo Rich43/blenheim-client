@@ -38,15 +38,6 @@
     "codegen": "rm -r src/types && apollo client:codegen --target typescript --localSchemaFile=src/schema.json --outputFlat src/types && rm src/types/globalTypes.ts",
     "download": "rm src/schema.json && apollo schema:download --endpoint http://localhost:8000 src/schema.json"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "standard": {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint/eslint-plugin"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
