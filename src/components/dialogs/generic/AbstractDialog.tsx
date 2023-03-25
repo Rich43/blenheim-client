@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 
 export interface AbstractDialogProps {
     dialogOpen: boolean;
@@ -7,6 +7,7 @@ export interface AbstractDialogProps {
     onClose: () => void;
     dialogTitle: string;
     dialogContentText: string;
+    children?: React.ReactNode;
 }
 
 export const AbstractDialog: FunctionComponent<AbstractDialogProps> = (props) => {

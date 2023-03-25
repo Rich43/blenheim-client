@@ -1,14 +1,12 @@
 import React, { FunctionComponent } from 'react';
-import { MenuItem, Select } from '@material-ui/core';
 import { AbstractDialog, AbstractDialogProps } from './AbstractDialog';
+import { MenuItem, Select } from '@mui/material';
+import { SelectInputProps } from '@mui/material/Select/SelectInput';
 
 interface SelectDialogProps extends AbstractDialogProps {
     selectData: {[key: string]: string}
     initialValue: unknown;
-    onChange: (
-        event: React.ChangeEvent<{ name?: string; value: unknown }>,
-        child: React.ReactNode,
-    ) => void;
+    onChange: SelectInputProps['onChange'];
 }
 
 export const SelectDialog: FunctionComponent<SelectDialogProps> = (props) => {

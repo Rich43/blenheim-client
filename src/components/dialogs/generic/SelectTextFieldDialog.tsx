@@ -1,16 +1,14 @@
 import React, { FunctionComponent } from 'react';
-import { MenuItem, Select, TextField } from '@material-ui/core';
 import { AbstractDialog, AbstractDialogProps } from './AbstractDialog';
+import { SelectInputProps } from '@mui/material/Select/SelectInput';
+import { MenuItem, Select, TextField } from '@mui/material';
 
 interface SelectTextFieldDialogProps extends AbstractDialogProps {
     selectData: {[key: string]: string}
     textBoxLabel: string;
     textBoxValue: string;
     selectInitialValue: unknown;
-    onSelectChange: (
-        event: React.ChangeEvent<{ name?: string; value: unknown }>,
-        child: React.ReactNode,
-    ) => void;
+    onSelectChange: SelectInputProps['onChange'];
     onTextFieldChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
 }
 

@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { TextField } from '@material-ui/core';
 import { AbstractDialog, AbstractDialogProps } from './AbstractDialog';
+import { TextField } from '@mui/material';
 
 interface TextFieldDialogProps extends AbstractDialogProps {
     textBoxLabel: string;
