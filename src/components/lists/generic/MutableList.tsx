@@ -14,7 +14,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 const classes: { [key: string]: React.CSSProperties } = {
     list: {
         maxHeight: 300,

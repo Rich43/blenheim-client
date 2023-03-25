@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
 import { QUERY } from '../queries/DnsQuery';
 import { StoreProvider } from '../../StoreProvider';
@@ -9,7 +8,6 @@ import { Box, Button, Typography } from '@mui/material';
 import ErrorIcon from '@mui/icons-material/Error';
 import InfoIcon from '@mui/icons-material/Info';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 const classes: { [key: string]: React.CSSProperties } = {
     icon: {
         paddingRight: 1

@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { Button, Card, CardActions, CardContent, CardHeader, List } from '@mui/material';
 import { redirect } from 'react-router-dom';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 const classes: { [key: string]: React.CSSProperties } = {
     card: {
         minHeight: 175

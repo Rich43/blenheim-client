@@ -10,7 +10,6 @@ import { Avatar, Box, Button, Container, CssBaseline, TextField, Typography } fr
 import { redirect } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 const classes: { [key: string]: React.CSSProperties } = {
     paper: {
         marginTop: 8,
@@ -63,7 +62,7 @@ export const Login: React.FC = observer((): JSX.Element => {
 
     useEffect(() => {
         if (logIn) {
-            getLogin({variables: {username, password}});
+            getLogin({variables: {username, password}}).then(ignore => {});
         }
     }, [logIn, username, password]);
 
@@ -71,7 +70,7 @@ export const Login: React.FC = observer((): JSX.Element => {
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <div style={classes.paper}>
-                <Logo viewBox="0 0 280 211" sx={classes.svg}/>
+                <Logo viewBox="0 0 280 211" style={classes.svg}/>
                 <Box p={3}/>
                 <Avatar style={classes.avatar}>
                     <LockOutlinedIcon/>
