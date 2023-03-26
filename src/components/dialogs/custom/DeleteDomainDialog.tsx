@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent } from 'react';
 import { SelectDialog } from '../generic/SelectDialog';
 import { useDeleteDomainMutation } from '../../queries/mutations/delete/DeleteDomainMutation';
-import { StoreProvider } from '../../../StoreProvider';
 import { updateDomainsCache } from '../../queries/DomainsQuery';
 import { createDomainMap, DomainsArray } from '../../common';
 
@@ -12,7 +11,6 @@ export const DeleteDomainDialog: FunctionComponent<{
 }> = ({ dialogOpen, onClose, domains }) => {
     const [value, setValue] = React.useState<unknown>(null);
     const [deleteDomain] = useDeleteDomainMutation();
-    const store = useContext(StoreProvider);
     const { domainMap, firstDomain } = createDomainMap(domains);
 
     if (firstDomain && !value) {
@@ -26,8 +24,8 @@ export const DeleteDomainDialog: FunctionComponent<{
             okClicked={() => {
                 deleteDomain(
                     {
-                        variables: { token: store.token, id: String(value) },
-                        update: updateDomainsCache('deleteDomain', store.token)
+                        variables: {id: String(value)},
+                        update: updateDomainsCache('deleteDomain')
                     }
                 ).then();
                 setValue(null);

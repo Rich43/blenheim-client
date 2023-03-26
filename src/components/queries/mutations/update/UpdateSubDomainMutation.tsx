@@ -1,7 +1,8 @@
-import { UpdateSubDomain, UpdateSubDomainVariables } from '../../../../types/UpdateSubDomain';
-import { gql, MutationTuple, useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
+import { graphql } from '../../../../gql';
+import { UpdateSubDomainMutation, UpdateSubDomainMutationVariables } from '../../../../gql/graphql';
 
-const MUTATION = gql`
+const MUTATION = graphql(/* GraphQL */`
     mutation UpdateSubDomain($id: ID!, $index: Int!, $name: String!) {
 
         settings {
@@ -15,8 +16,8 @@ const MUTATION = gql`
             }
         }
     }
-`;
+`);
 
-type UpdateSubDomainMutationType = () => MutationTuple<UpdateSubDomain, UpdateSubDomainVariables>;
+type UpdateSubDomainMutationType = () => MutationTuple<UpdateSubDomainMutation, UpdateSubDomainMutationVariables>;
 export const useUpdateSubDomainMutation: UpdateSubDomainMutationType =
-    () => useMutation<UpdateSubDomain, UpdateSubDomainVariables>(MUTATION);
+    () => useMutation<UpdateSubDomainMutation, UpdateSubDomainMutationVariables>(MUTATION);

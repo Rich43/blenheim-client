@@ -1,9 +1,9 @@
-import { DeleteSubDomain, DeleteSubDomainVariables } from '../../../../types/DeleteSubDomain';
-import { gql, MutationTuple, useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
+import { graphql } from '../../../../gql';
+import { DeleteSubDomainMutation, DeleteSubDomainMutationVariables } from '../../../../gql/graphql';
 
-const MUTATION = gql`
+const MUTATION = graphql(/* GraphQL */`
     mutation DeleteSubDomain($id: ID!, $index: Int!) {
-
         settings {
             deleteSubDomain(id: $id, index: $index) {
                 id
@@ -15,8 +15,8 @@ const MUTATION = gql`
             }
         }
     }
-`;
+`);
 
-type DeleteSubDomainMutationType = () => MutationTuple<DeleteSubDomain, DeleteSubDomainVariables>;
+type DeleteSubDomainMutationType = () => MutationTuple<DeleteSubDomainMutation, DeleteSubDomainMutationVariables>;
 export const useDeleteSubDomainMutation: DeleteSubDomainMutationType =
-    () => useMutation<DeleteSubDomain, DeleteSubDomainVariables>(MUTATION);
+    () => useMutation<DeleteSubDomainMutation, DeleteSubDomainMutationVariables>(MUTATION);

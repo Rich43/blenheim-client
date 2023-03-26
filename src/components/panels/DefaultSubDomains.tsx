@@ -1,13 +1,11 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent } from 'react';
 import { SETTINGS } from '../../App';
-import { StoreProvider } from '../../StoreProvider';
 import { useSettingsQuery } from '../queries/SettingsQuery';
 import { DashboardCard } from './generic/DashboardCard';
 import { ListItemText } from '@mui/material';
 
 export const DefaultSubDomains: FunctionComponent = () => {
-    const store = useContext(StoreProvider);
-    const settings = useSettingsQuery({ token: store.token });
+    const settings = useSettingsQuery({});
 
     if (settings.loading || !settings.data) {
         return (<span>Loading...</span>);

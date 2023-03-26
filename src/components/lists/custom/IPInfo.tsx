@@ -1,11 +1,10 @@
 /* eslint-disable camelcase */
 import React, { FunctionComponent } from 'react';
-import { Domains_settings } from '../../../types/Domains';
 import { Box, IconButton, Popover, Typography } from '@mui/material';
 import { Info } from '@mui/icons-material';
 
 export const IPInfo: FunctionComponent<{
-    domainsSettings: Domains_settings;
+    domainsSettings: any;
     domainIndex?: number;
     subdomainIndex?: number;
 }> = ({ domainsSettings, domainIndex, subdomainIndex }) => {

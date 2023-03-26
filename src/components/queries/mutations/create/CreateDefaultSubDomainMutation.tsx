@@ -1,9 +1,9 @@
-import { CreateDefaultSubDomain, CreateDefaultSubDomainVariables } from '../../../../types/CreateDefaultSubDomain';
-import { gql, MutationTuple, useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
+import { graphql } from '../../../../gql';
+import { CreateDefaultSubDomainMutation, CreateDefaultSubDomainMutationVariables } from '../../../../gql/graphql';
 
-const MUTATION = gql`
+const MUTATION = graphql(/* GraphQL */ `
     mutation CreateDefaultSubDomain($id: ID!) {
-
         settings {
             createDefaultSubDomain(id: $id) {
                 ipv4
@@ -12,9 +12,9 @@ const MUTATION = gql`
             }
         }
     }
-`;
+`);
 
 type CreateDefaultSubDomainMutationType = () =>
-    MutationTuple<CreateDefaultSubDomain, CreateDefaultSubDomainVariables>;
+    MutationTuple<CreateDefaultSubDomainMutation, CreateDefaultSubDomainMutationVariables>;
 export const useCreateDefaultSubDomainMutation: CreateDefaultSubDomainMutationType =
-    () => useMutation<CreateDefaultSubDomain, CreateDefaultSubDomainVariables>(MUTATION);
+    () => useMutation<CreateDefaultSubDomainMutation, CreateDefaultSubDomainMutationVariables>(MUTATION);

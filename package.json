@@ -27,6 +27,9 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "3.2.2",
+    "@graphql-codegen/client-preset": "2.1.1",
+    "@graphql-codegen/introspection": "3.0.1",
     "http-proxy-middleware": "^0.19.1",
     "requirejs": "^2.3.6",
     "rimraf": "^4.4.1"
@@ -36,8 +39,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "codegen": "rm -r src/types && apollo client:codegen --target typescript --localSchemaFile=src/schema.json --outputFlat src/types && rm src/types/globalTypes.ts",
-    "download": "rm src/schema.json && apollo schema:download --endpoint http://localhost:8000 src/schema.json"
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "browserslist": {
     "production": [

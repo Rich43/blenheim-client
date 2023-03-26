@@ -1,12 +1,11 @@
 /* eslint-disable camelcase */
-import { Domains_settings, Domains_settings_domains } from '../types/Domains';
 
 export interface DomainsListProps {
-    domainsSettings: Domains_settings;
+    domainsSettings: any;
     domainIndex: number;
 }
 
-export type DomainsArray = Domains_settings_domains[] | null;
+export type DomainsArray = any[] | null;
 
 export function createDomainMap(domains: DomainsArray): {
     domainMap: { [key: string]: string },

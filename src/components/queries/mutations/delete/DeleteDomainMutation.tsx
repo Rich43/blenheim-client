@@ -1,9 +1,9 @@
-import { DeleteDomain, DeleteDomainVariables } from '../../../../types/DeleteDomain';
-import { gql, MutationTuple, useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
+import { graphql } from '../../../../gql';
+import { DeleteDomainMutation, DeleteDomainMutationVariables } from '../../../../gql/graphql';
 
-const MUTATION = gql`
+const MUTATION = graphql(/* GraphQL */`
     mutation DeleteDomain($id: ID!) {
-
         settings {
             deleteDomain(id: $id) {
                 id
@@ -15,7 +15,7 @@ const MUTATION = gql`
             }
         }
     }
-`;
+`);
 
-type DeleteDomainMutationType = () => MutationTuple<DeleteDomain, DeleteDomainVariables>;
-export const useDeleteDomainMutation: DeleteDomainMutationType = () => useMutation<DeleteDomain, DeleteDomainVariables>(MUTATION);
+type DeleteDomainMutationType = () => MutationTuple<DeleteDomainMutation, DeleteDomainMutationVariables>;
+export const useDeleteDomainMutation: DeleteDomainMutationType = () => useMutation<DeleteDomainMutation, DeleteDomainMutationVariables>(MUTATION);

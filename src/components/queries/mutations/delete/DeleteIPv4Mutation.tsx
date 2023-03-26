@@ -1,9 +1,9 @@
-import { DeleteIPv4, DeleteIPv4Variables } from '../../../../types/DeleteIPv4';
-import { gql, MutationTuple, useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
+import { DeleteIPv4MutationVariables } from '../../../../gql/graphql';
+import { graphql } from '../../../../gql';
 
-const MUTATION = gql`
+const MUTATION = graphql(/* GraphQL */`
     mutation DeleteIPv4($index: Int!) {
-
         settings {
             deleteIpv4(index: $index) {
                 ipv4
@@ -12,7 +12,7 @@ const MUTATION = gql`
             }
         }
     }
-`;
+`);
 
-type DeleteIPv4Mutation = () => MutationTuple<DeleteIPv4, DeleteIPv4Variables>;
-export const useDeleteIPv4Mutation: DeleteIPv4Mutation = () => useMutation<DeleteIPv4, DeleteIPv4Variables>(MUTATION);
+type DeleteIPv4Mutation = () => MutationTuple<DeleteIPv4Mutation, DeleteIPv4MutationVariables>;
+export const useDeleteIPv4Mutation: DeleteIPv4Mutation = () => useMutation<DeleteIPv4Mutation, DeleteIPv4MutationVariables>(MUTATION);

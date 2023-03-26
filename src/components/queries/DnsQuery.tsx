@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
+import { graphql } from '../../gql';
 
-export const QUERY = gql`
+export const QUERY = graphql(/* GraphQL */ `
     query Dns {
         dns {
             generate {
@@ -11,4 +11,4 @@ export const QUERY = gql`
             }
         }
     }
-`;
+`);

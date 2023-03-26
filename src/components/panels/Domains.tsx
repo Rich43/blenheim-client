@@ -1,13 +1,11 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent } from 'react';
 import { DOMAINS } from '../../App';
 import { DomainsList } from './DomainsList';
 import { useDomainsQuery } from '../queries/DomainsQuery';
-import { StoreProvider } from '../../StoreProvider';
 import { DashboardCard } from './generic/DashboardCard';
 
 export const Domains: FunctionComponent = () => {
-    const store = useContext(StoreProvider);
-    const domains = useDomainsQuery({ token: store.token });
+    const domains = useDomainsQuery();
     const domainsSettings = domains.data && domains.data.settings;
 
     if (domains.loading || !domainsSettings) {

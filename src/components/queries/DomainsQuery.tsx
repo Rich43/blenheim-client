@@ -1,10 +1,8 @@
-import { AddDomain } from '../../types/AddDomain';
-import { Domains, DomainsVariables } from '../../types/Domains';
-import { DataProxy, FetchResult, gql, QueryResult, useQuery } from '@apollo/client';
-import { DeleteDomain } from '../../types/DeleteDomain';
-import { UpdateDomain } from '../../types/UpdateDomain';
+import { DataProxy, useQuery } from '@apollo/client';
+import { graphql } from '../../gql';
+import { DomainsQuery, DomainsQueryVariables } from '../../gql/graphql';
 
-const QUERY = gql`
+const QUERY = graphql(/* GraphQL */`
     query Domains {
         settings {
             domains {
@@ -20,31 +18,23 @@ const QUERY = gql`
             ipv6
         }
     }
-`;
+`);
 
-type DomainsQueryType = (variables: DomainsVariables) => QueryResult<Domains, DomainsVariables>;
-export const useDomainsQuery : DomainsQueryType = (variables: DomainsVariables) =>
-    useQuery<Domains, DomainsVariables>(QUERY, { partialRefetch: true, variables });
+export const useDomainsQuery = () => useQuery<DomainsQuery, DomainsQueryVariables>(QUERY, {partialRefetch: true});
 
-type DomainFetchResult = FetchResult<AddDomain | DeleteDomain | UpdateDomain>;
-export type UpdateDomainsCacheType = (
-    cache: DataProxy,
-    fetchResult: DomainFetchResult
-) => void;
 export const updateDomainsCache =
-    (queryName: string, token: string): UpdateDomainsCacheType =>
-        (cache: DataProxy, fetchResult: DomainFetchResult) => {
-            const { data } = fetchResult;
-            const domainsQuery = cache.readQuery<Domains, DomainsVariables>(
+    (queryName: string) =>
+        (cache: DataProxy, fetchResult: any) => {
+            const {data} = fetchResult;
+            const domainsQuery = cache.readQuery<DomainsQuery, DomainsQueryVariables>(
                 {
-                    query: QUERY,
-                    variables: { token: token }
+                    query: QUERY
                 }
             );
             if (domainsQuery && data && data.settings) {
                 const fetchResultData = Reflect.get(data && data.settings, queryName);
                 if (fetchResultData) {
-                    cache.writeQuery<Domains, DomainsVariables>(
+                    cache.writeQuery<DomainsQuery, DomainsQueryVariables>(
                         {
                             query: QUERY,
                             data: {

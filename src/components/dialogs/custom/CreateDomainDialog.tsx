@@ -1,6 +1,5 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent } from 'react';
 import { TextFieldDialog } from '../generic/TextFieldDialog';
-import { StoreProvider } from '../../../StoreProvider';
 import { useCreateDomainMutation } from '../../queries/mutations/create/CreateDomainMutation';
 import { updateDomainsCache } from '../../queries/DomainsQuery';
 
@@ -9,7 +8,6 @@ export const CreateDomainDialog: FunctionComponent<{
     onClose: () => void;
 }> = ({ dialogOpen, onClose }) => {
     const [createDomain] = useCreateDomainMutation();
-    const store = useContext(StoreProvider);
     const [dialogText, setDialogText] = React.useState<string>('');
 
     return (
@@ -20,8 +18,8 @@ export const CreateDomainDialog: FunctionComponent<{
                 () => {
                     createDomain(
                         {
-                            variables: { token: store.token, id: dialogText },
-                            update: updateDomainsCache('createDomain', store.token)
+                            variables: {id: dialogText},
+                            update: updateDomainsCache('createDomain')
                         }
                     ).then();
                 }

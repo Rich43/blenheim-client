@@ -1,9 +1,9 @@
-import { AddDomain, AddDomainVariables } from '../../../../types/AddDomain';
-import { gql, MutationTuple, useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
+import { graphql } from '../../../../gql';
+import { CreateDomainMutation, CreateDomainMutationVariables } from '../../../../gql/graphql';
 
-const MUTATION = gql`
-    mutation AddDomain($id: ID!) {
-
+const MUTATION = graphql(/* GraphQL */`
+    mutation CreateDomain($id: ID!) {
         settings {
             createDomain(id: $id, subdomains: []) {
                 id
@@ -15,7 +15,7 @@ const MUTATION = gql`
             }
         }
     }
-`;
+`);
 
-type CreateDomainMutationType = () => MutationTuple<AddDomain, AddDomainVariables>;
-export const useCreateDomainMutation: CreateDomainMutationType = () => useMutation<AddDomain, AddDomainVariables>(MUTATION);
+type CreateDomainMutationType = () => MutationTuple<CreateDomainMutation, CreateDomainMutationVariables>;
+export const useCreateDomainMutation: CreateDomainMutationType = () => useMutation<CreateDomainMutation, CreateDomainMutationVariables>(MUTATION);

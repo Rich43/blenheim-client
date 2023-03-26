@@ -1,12 +1,11 @@
-import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { QUERY } from '../queries/DnsQuery';
-import { StoreProvider } from '../../StoreProvider';
-import { Dns, DnsVariables } from '../../types/Dns';
 import { SingleButtonDialog } from '../dialogs/generic/SingleButtonDialog';
 import { useLazyQuery } from '@apollo/client';
 import { Box, Button, Typography } from '@mui/material';
 import ErrorIcon from '@mui/icons-material/Error';
 import InfoIcon from '@mui/icons-material/Info';
+import { DnsQuery, DnsQueryVariables } from '../../gql/graphql';
 
 const classes: { [key: string]: React.CSSProperties } = {
     icon: {
@@ -15,13 +14,12 @@ const classes: { [key: string]: React.CSSProperties } = {
 };
 
 export const Generate: FunctionComponent = () => {
-    const store = useContext(StoreProvider);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [result, setResult] = useState('');
     const [error, setError] = useState(false);
-    const [getDNS, {loading, error: queryError, data}] = useLazyQuery<Dns, DnsVariables>(
+    const [getDNS, {loading, error: queryError, data}] = useLazyQuery<DnsQuery, DnsQueryVariables>(
         QUERY,
-        {variables: {token: store.token}, fetchPolicy: 'no-cache'}
+        {variables: {}, fetchPolicy: 'no-cache'}
     );
 
     useEffect(() => {

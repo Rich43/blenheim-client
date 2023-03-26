@@ -3,12 +3,12 @@ import { Logo } from '../Logo';
 import { StoreProvider } from '../../StoreProvider';
 import { observer } from 'mobx-react-lite';
 import { HOME } from '../../App';
-import { Login as LoginType, LoginVariables } from '../../types/Login';
 import { useLazyQuery } from '@apollo/client';
 import { LOGIN_QUERY } from '../queries/LoginQuery';
 import { Avatar, Box, Button, Container, CssBaseline, TextField, Typography } from '@mui/material';
 import { redirect } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { LoginQuery, LoginQueryVariables } from '../../gql/graphql';
 
 const classes: { [key: string]: React.CSSProperties } = {
     paper: {
@@ -39,7 +39,7 @@ export const Login: React.FC = observer((): JSX.Element => {
     const [logIn, setLogIn] = React.useState(false);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [getLogin, {loading, error, data}] = useLazyQuery<LoginType, LoginVariables>(
+    const [getLogin, {loading, error, data}] = useLazyQuery<LoginQuery, LoginQueryVariables>(
         LOGIN_QUERY,
         {fetchPolicy: 'no-cache'}
     );

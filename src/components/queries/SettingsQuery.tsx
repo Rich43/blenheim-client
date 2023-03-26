@@ -1,7 +1,8 @@
-import { Settings, SettingsVariables } from '../../types/Settings';
-import { gql, QueryResult, useQuery } from '@apollo/client';
+import { QueryResult, useQuery } from '@apollo/client';
+import { graphql } from '../../gql';
+import { SettingsQuery, SettingsQueryVariables } from '../../gql/graphql';
 
-const QUERY = gql`
+const QUERY = graphql(/* GraphQL */`
     query Settings {
         settings {
             defaultSubdomains
@@ -9,8 +10,8 @@ const QUERY = gql`
             ipv6
         }
     }
-`;
+`);
 
-type SettingsQueryResult = (variables: SettingsVariables) => QueryResult<Settings, SettingsVariables>;
-export const useSettingsQuery: SettingsQueryResult = (variables: SettingsVariables) =>
-    useQuery<Settings, SettingsVariables>(QUERY, { partialRefetch: true, variables });
+type SettingsQueryResult = (variables: SettingsQueryVariables) => QueryResult<SettingsQuery, SettingsQueryVariables>;
+export const useSettingsQuery: SettingsQueryResult = (variables: SettingsQueryVariables) =>
+    useQuery<SettingsQuery, SettingsQueryVariables>(QUERY, {partialRefetch: true, variables});

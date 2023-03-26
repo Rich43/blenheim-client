@@ -1,9 +1,9 @@
-import { CreateIPv4, CreateIPv4Variables } from '../../../../types/CreateIPv4';
-import { gql, MutationTuple, useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
+import { graphql } from '../../../../gql';
+import { CreateIPv4Mutation, CreateIPv4MutationVariables } from '../../../../gql/graphql';
 
-const MUTATION = gql`
+const MUTATION = graphql(/* GraphQL */`
     mutation CreateIPv4($id: ID!) {
-
         settings {
             createIpv4(id: $id) {
                 ipv4
@@ -12,7 +12,7 @@ const MUTATION = gql`
             }
         }
     }
-`;
+`);
 
-type CreateIPv4MutationType = () => MutationTuple<CreateIPv4, CreateIPv4Variables>;
-export const useCreateIPv4Mutation: CreateIPv4MutationType = () => useMutation<CreateIPv4, CreateIPv4Variables>(MUTATION);
+type CreateIPv4MutationType = () => MutationTuple<CreateIPv4Mutation, CreateIPv4MutationVariables>;
+export const useCreateIPv4Mutation: CreateIPv4MutationType = () => useMutation<CreateIPv4Mutation, CreateIPv4MutationVariables>(MUTATION);

@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent } from 'react';
 import { SelectTextFieldDialog } from '../generic/SelectTextFieldDialog';
 import { createDomainMap, DomainsArray } from '../../common';
-import { StoreProvider } from '../../../StoreProvider';
 import { useUpdateDomainMutation } from '../../queries/mutations/update/UpdateDomainMutation';
 import { updateDomainsCache } from '../../queries/DomainsQuery';
 
@@ -10,7 +9,6 @@ export const UpdateDomainDialog: FunctionComponent<{
     onClose: () => void;
     domains: DomainsArray
 }> = ({ dialogOpen, onClose, domains }) => {
-    const store = useContext(StoreProvider);
     const [dialogText, setDialogText] = React.useState<string>('');
     const [value, setValue] = React.useState<unknown>(null);
     const { domainMap, firstDomain } = createDomainMap(domains);
@@ -29,11 +27,10 @@ export const UpdateDomainDialog: FunctionComponent<{
                 updateDomain(
                     {
                         variables: {
-                            token: store.token,
                             id: String(value),
                             newName: dialogText
                         },
-                        update: updateDomainsCache('updateDomain', store.token)
+                        update: updateDomainsCache('updateDomain')
                     }
                 ).then();
                 setValue(null);

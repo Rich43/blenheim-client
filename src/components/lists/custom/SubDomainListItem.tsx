@@ -1,9 +1,7 @@
 /* eslint-disable camelcase */
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent } from 'react';
 import { UpdateSubDomainDialog } from '../../dialogs/custom/UpdateSubDomainDialog';
 import { useDeleteSubDomainMutation } from '../../queries/mutations/delete/DeleteSubDomainMutation';
-import { StoreProvider } from '../../../StoreProvider';
-import { Domains_settings } from '../../../types/Domains';
 import { IPInfo } from './IPInfo';
 import { TextFieldDialog } from '../../dialogs/generic/TextFieldDialog';
 import { useUpdateSubDomainIPv4Mutation } from '../../queries/mutations/update/UpdateSubDomainIPv4Mutation';
@@ -16,7 +14,7 @@ import { Edit, Remove } from '@mui/icons-material';
 export const SubDomainListItem: FunctionComponent<{
     domain: string,
     subdomain: string,
-    domainsSettings: Domains_settings,
+    domainsSettings: any,
     domainIndex: number
     subdomainIndex: number,
 }> = ({ subdomainIndex, domain, subdomain, domainsSettings, domainIndex }) => {
@@ -35,7 +33,6 @@ export const SubDomainListItem: FunctionComponent<{
     const [updateIPv6SubDomain] = useUpdateSubDomainIPv6Mutation();
     const [deleteIPv4SubDomain] = useDeleteSubDomainIPv4Mutation();
     const [deleteIPv6SubDomain] = useDeleteSubDomainIPv6Mutation();
-    const store = useContext(StoreProvider);
 
     return (
         <>
@@ -60,7 +57,6 @@ export const SubDomainListItem: FunctionComponent<{
                 okClicked={() => {
                     updateIPv4SubDomain({
                         variables: {
-                            token: store.token,
                             id: domain,
                             index: subdomainIndex,
                             name: IPv4Address
@@ -82,7 +78,6 @@ export const SubDomainListItem: FunctionComponent<{
                 okClicked={() => {
                     updateIPv6SubDomain({
                         variables: {
-                            token: store.token,
                             id: domain,
                             index: subdomainIndex,
                             name: IPv6Address
@@ -141,7 +136,6 @@ export const SubDomainListItem: FunctionComponent<{
                     setDeleteMenuEl(null);
                     deleteSubDomain({
                         variables: {
-                            token: store.token,
                             id: domain,
                             index: subdomainIndex
                         }
@@ -151,7 +145,6 @@ export const SubDomainListItem: FunctionComponent<{
                     setDeleteMenuEl(null);
                     deleteIPv4SubDomain({
                         variables: {
-                            token: store.token,
                             id: domain,
                             index: subdomainIndex
                         }
@@ -161,7 +154,6 @@ export const SubDomainListItem: FunctionComponent<{
                     setDeleteMenuEl(null);
                     deleteIPv6SubDomain({
                         variables: {
-                            token: store.token,
                             id: domain,
                             index: subdomainIndex
                         }

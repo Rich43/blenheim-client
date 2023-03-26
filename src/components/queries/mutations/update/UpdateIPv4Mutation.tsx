@@ -1,9 +1,9 @@
-import { UpdateIPv4, UpdateIPv4Variables } from '../../../../types/UpdateIPv4';
-import { gql, MutationTuple, useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
+import { graphql } from '../../../../gql';
+import { UpdateIPv4Mutation, UpdateIPv4MutationVariables } from '../../../../gql/graphql';
 
-const MUTATION = gql`
+const MUTATION = graphql(/* GraphQL */`
     mutation UpdateIPv4($id: ID!, $index: Int!) {
-
         settings {
             updateIpv4(id: $id, index: $index) {
                 ipv4
@@ -12,7 +12,7 @@ const MUTATION = gql`
             }
         }
     }
-`;
+`);
 
-type UpdateIPv4MutationType = () => MutationTuple<UpdateIPv4, UpdateIPv4Variables>;
-export const useUpdateIPv4Mutation: UpdateIPv4MutationType = () => useMutation<UpdateIPv4, UpdateIPv4Variables>(MUTATION);
+type UpdateIPv4MutationType = () => MutationTuple<UpdateIPv4Mutation, UpdateIPv4MutationVariables>;
+export const useUpdateIPv4Mutation: UpdateIPv4MutationType = () => useMutation<UpdateIPv4Mutation, UpdateIPv4MutationVariables>(MUTATION);

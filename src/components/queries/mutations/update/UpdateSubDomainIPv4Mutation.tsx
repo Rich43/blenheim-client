@@ -1,9 +1,9 @@
-import { UpdateSubDomainIPv4, UpdateSubDomainIPv4Variables } from '../../../../types/UpdateSubDomainIPv4';
-import { gql, MutationTuple, useMutation } from '@apollo/client';
+import { MutationTuple, useMutation } from '@apollo/client';
+import { graphql } from '../../../../gql';
+import { UpdateSubDomainIPv4Mutation, UpdateSubDomainIPv4MutationVariables } from '../../../../gql/graphql';
 
-const MUTATION = gql`
+const MUTATION = graphql(/* GraphQL */`
     mutation UpdateSubDomainIPv4($id: ID!, $index: Int!, $name: String!) {
-
         settings {
             updateSubDomainIpAddressV4(id: $id, index: $index, name: $name) {
                 id
@@ -15,8 +15,8 @@ const MUTATION = gql`
             }
         }
     }
-`;
+`);
 
-type UpdateSubDomainIPv4MutationType = () => MutationTuple<UpdateSubDomainIPv4, UpdateSubDomainIPv4Variables>;
+type UpdateSubDomainIPv4MutationType = () => MutationTuple<UpdateSubDomainIPv4Mutation, UpdateSubDomainIPv4MutationVariables>;
 export const useUpdateSubDomainIPv4Mutation: UpdateSubDomainIPv4MutationType =
-    () => useMutation<UpdateSubDomainIPv4, UpdateSubDomainIPv4Variables>(MUTATION);
+    () => useMutation<UpdateSubDomainIPv4Mutation, UpdateSubDomainIPv4MutationVariables>(MUTATION);

@@ -1,7 +1,6 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent } from 'react';
 import { useDomainsQuery } from '../queries/DomainsQuery';
 import { DomainsList } from '../lists/custom/DomainsList';
-import { StoreProvider } from '../../StoreProvider';
 import { CreateDomainDialog } from '../dialogs/custom/CreateDomainDialog';
 import { DeleteDomainDialog } from '../dialogs/custom/DeleteDomainDialog';
 import { UpdateDomainDialog } from '../dialogs/custom/UpdateDomainDialog';
@@ -16,10 +15,9 @@ export const Domains: FunctionComponent = () => {
             right: 4
         }
     };
-    const store = useContext(StoreProvider);
     const [menuEl, setMenuEl] = React.useState<null | HTMLElement>(null);
     const id = menuEl ? 'domain-menu' : undefined;
-    const domains = useDomainsQuery({token: store.token});
+    const domains = useDomainsQuery();
     const domainsSettings = domains.data && domains.data.settings;
     const domainsSettingsDomains = (domainsSettings && domainsSettings.domains) || null;
     const [addDomainDialogOpen, setAddDomainDialogOpen] = React.useState<boolean>(false);
