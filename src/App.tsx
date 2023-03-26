@@ -48,12 +48,12 @@ const App: React.FC = (): JSX.Element => {
 
     return (
         <ApolloProvider client={client(store.token)}>
-            ${loggedIn ? (
-            <>
-                <Navigation/>
-                <Box p={2}/>
-            </>
-        ) : <></>}
+            {loggedIn ? (
+                <>
+                    <Navigation/>
+                    <Box p={2}/>
+                </>
+            ) : <></>}
             <RouterProvider router={loggedIn ? loggedInRouters : notLoggedInRouters}/>
         </ApolloProvider>
     );
