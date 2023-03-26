@@ -28,7 +28,8 @@
   },
   "devDependencies": {
     "http-proxy-middleware": "^0.19.1",
-    "requirejs": "^2.3.6"
+    "requirejs": "^2.3.6",
+    "rimraf": "^4.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
