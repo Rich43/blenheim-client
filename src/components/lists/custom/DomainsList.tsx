@@ -32,7 +32,7 @@ export const DomainsList: FunctionComponent<DomainsListProps> =
                 <Collapse in={open} timeout='auto' key={`col${domainIndex}`} unmountOnExit>
                     <List component='div' disablePadding key={`lst${domainIndex}`}>
                         {
-                            domainsSettings.defaultSubdomains && domainsSettings.defaultSubdomains.map(subdomain => {
+                            domainsSettings.defaultSubdomains && domainsSettings.defaultSubdomains.map((subdomain: any) => {
                                 const listItem = <><ListItem key={`innerLi${defaultSubDomainCount}`}>
                                     <ListItemText
                                         key={`innerLit${defaultSubDomainCount}`}>{subdomain}</ListItemText>
@@ -44,7 +44,7 @@ export const DomainsList: FunctionComponent<DomainsListProps> =
                             })
                         }
                         {
-                            domainsSettingsDomain.subdomains && domainsSettingsDomain.subdomains.map(subdomain => {
+                            domainsSettingsDomain.subdomains && domainsSettingsDomain.subdomains.map((subdomain: any) => {
                                 const subDomainListItem = (
                                     <>
                                         <SubDomainListItem
