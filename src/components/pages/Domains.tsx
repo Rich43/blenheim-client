@@ -35,7 +35,8 @@ export const Domains: FunctionComponent = () => {
                 </ListSubheader>
             }>
                 {domainsSettings && domainsSettingsDomains && domainsSettingsDomains.map(domain => {
-                    const domainsList = (<><DomainsList domainsSettings={domainsSettings} domainIndex={count}/></>);
+                    const domainsList = (<><DomainsList key={count} domainsSettings={domainsSettings}
+                                                        domainIndex={count}/></>);
                     if (domain) {
                         count += 1;
                         return domainsList;
