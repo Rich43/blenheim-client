@@ -6,6 +6,7 @@ import { Logout } from './components/pages/Logout';
 import { Navigation } from './components/nav/Navigation';
 import { Domains } from './components/pages/Domains';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Router } from '@remix-run/router';
 import { Settings } from './components/pages/Settings';
 import { ApolloProvider } from '@apollo/client';
 import { Box } from '@mui/material';
@@ -20,31 +21,36 @@ export const LOGOUT = '/logout';
 const App: React.FC = (): JSX.Element => {
     const [state, dispatch] = useReducer(reducer, userContextValue);
     const loggedIn = !!state.token;
-    const notLoggedInRouters = createBrowserRouter([
-        {
-            path: ROOT,
-            element: <Login />,
-        },
-    ]);
 
-    const loggedInRouters = createBrowserRouter([
-        {
-            path: HOME,
-            element: <Home />,
-        },
-        {
-            path: DOMAINS,
-            element: <Domains />
-        },
-        {
-            path: SETTINGS,
-            element: <Settings />
-        },
-        {
-            path: LOGOUT,
-            element: <Logout />
-        }
-    ]);
+    let router: Router;
+    if (loggedIn) {
+        router = createBrowserRouter([
+            {
+                path: HOME,
+                element: <Home />,
+            },
+            {
+                path: DOMAINS,
+                element: <Domains />
+            },
+            {
+                path: SETTINGS,
+                element: <Settings />
+            },
+            {
+                path: LOGOUT,
+                element: <Logout />
+            }
+        ]);
+    } else {
+        router = createBrowserRouter([
+            {
+                path: ROOT,
+                element: <Login/>,
+            },
+        ]);
+    }
+
     return (
         <UserDispatchContext.Provider value={dispatch}>
             <UserStateContext.Provider value={state}>
@@ -55,7 +61,7 @@ const App: React.FC = (): JSX.Element => {
                             <Box p={2}/>
                         </>
                     ) : <></>}
-                    <RouterProvider router={loggedIn ? loggedInRouters : notLoggedInRouters}/>
+                    <RouterProvider router={router}/>
                 </ApolloProvider>
             </UserStateContext.Provider>
         </UserDispatchContext.Provider>
