@@ -51,12 +51,16 @@ export const Login: React.FC = (): JSX.Element => {
                 if (dispatch && username) {
                     dispatch({type: 'user', payload: username});
                     dispatch({type: 'token', payload: token});
+                    window.localStorage.setItem('user', username);
+                    window.localStorage.setItem('token', token);
                     navigate(HOME);
                 }
             } else {
                 if (dispatch) {
                     dispatch({type: 'user', payload: ''});
                     dispatch({type: 'token', payload: ''});
+                    window.localStorage.setItem('user', '');
+                    window.localStorage.setItem('token', '');
                 }
             }
         }

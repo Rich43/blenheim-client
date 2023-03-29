@@ -9,6 +9,8 @@ export const Logout: React.FC = (): JSX.Element => {
     if (dispatch) {
         dispatch({type: 'user', payload: ''});
         dispatch({type: 'token', payload: ''});
+        window.localStorage.setItem('user', '');
+        window.localStorage.setItem('token', '');
         navigate(ROOT);
     }
     return (<></>);

@@ -10,7 +10,10 @@ export interface Action {
     payload: string | null;
 }
 
-export const userContextValue: UserContextType = {user: null, token: null};
+export const userContextValue: UserContextType = {
+    user: window.localStorage.getItem('user'),
+    token: window.localStorage.getItem('token')
+};
 
 export const UserDispatchContext = createContext<Dispatch<Action> | undefined>(undefined);
 export const UserStateContext = createContext<UserContextType | undefined>(userContextValue);
