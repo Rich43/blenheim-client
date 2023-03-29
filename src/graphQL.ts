@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-export const client = (token: string) => {
+export const client = (token?: string) => {
     let headers = {};
     if (token) {
         headers = {

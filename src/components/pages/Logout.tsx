@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
-import { StoreProvider } from '../../StoreProvider';
+import { UserDispatchContext } from '../../userStoreProvider';
 import { redirect } from 'react-router-dom';
 import { ROOT } from '../../App';
 
 export const Logout: React.FC = (): JSX.Element => {
-    const store = useContext(StoreProvider);
-    store.user = '';
-    store.token = '';
-    redirect(ROOT);
+    const dispatch = useContext(UserDispatchContext);
+    if (dispatch) {
+        dispatch({type: 'user', payload: ''});
+        dispatch({type: 'token', payload: ''});
+        redirect(ROOT);
+    }
     return (<></>);
 };

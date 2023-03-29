@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { Logo } from '../Logo';
-import { StoreProvider } from '../../StoreProvider';
-import { observer } from 'mobx-react-lite';
 import { HOME } from '../../App';
 import { useLazyQuery } from '@apollo/client';
 import { LOGIN_QUERY } from '../queries/LoginQuery';
@@ -9,6 +7,7 @@ import { Avatar, Box, Button, Container, CssBaseline, TextField, Typography } fr
 import { redirect } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { LoginQuery, LoginQueryVariables } from '../../gql/graphql';
+import { UserDispatchContext } from '../../userStoreProvider';
 
 const classes: { [key: string]: React.CSSProperties } = {
     paper: {
@@ -34,8 +33,8 @@ const classes: { [key: string]: React.CSSProperties } = {
     }
 };
 
-export const Login: React.FC = observer((): JSX.Element => {
-    const store = useContext(StoreProvider);
+export const Login: React.FC = (): JSX.Element => {
+    const dispatch = useContext(UserDispatchContext);
     const [logIn, setLogIn] = React.useState(false);
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -48,14 +47,18 @@ export const Login: React.FC = observer((): JSX.Element => {
         if (data && data.authentication) {
             const token = data.authentication.login;
             if (token) {
-                store.token = token;
-                store.user = username;
-                setLogIn(false);
-                redirect(HOME);
+                if (dispatch) {
+                    dispatch({type: 'user', payload: username});
+                    dispatch({type: 'token', payload: token});
+                    setLogIn(false);
+                    redirect(HOME);
+                }
             } else {
-                store.token = '';
-                store.user = '';
-                setLogIn(false);
+                if (dispatch) {
+                    dispatch({type: 'user', payload: ''});
+                    dispatch({type: 'token', payload: ''});
+                    setLogIn(false);
+                }
             }
         }
     }, [data]);
@@ -123,4 +126,4 @@ export const Login: React.FC = observer((): JSX.Element => {
             </div>
         </Container>
     );
-});
+};

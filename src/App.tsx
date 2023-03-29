@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useReducer } from 'react';
 import { client } from './graphQL';
 import { Home } from './components/pages/Home';
 import { Login } from './components/pages/Login';
@@ -9,7 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Settings } from './components/pages/Settings';
 import { ApolloProvider } from '@apollo/client';
 import { Box } from '@mui/material';
-import { StoreProvider } from './StoreProvider';
+import { reducer, userContextValue, UserDispatchContext, UserStateContext } from './userStoreProvider';
 
 export const ROOT = '/';
 export const HOME = '/home';
@@ -18,8 +18,8 @@ export const SETTINGS = '/settings';
 export const LOGOUT = '/logout';
 
 const App: React.FC = (): JSX.Element => {
-    const store = useContext(StoreProvider);
-    const loggedIn = !!store.token;
+    const [state, dispatch] = useReducer(reducer, userContextValue);
+    const loggedIn = !!state.token;
     const notLoggedInRouters = createBrowserRouter([
         {
             path: ROOT,
@@ -45,17 +45,20 @@ const App: React.FC = (): JSX.Element => {
             element: <Logout />
         }
     ]);
-
     return (
-        <ApolloProvider client={client(store.token)}>
-            {loggedIn ? (
-                <>
-                    <Navigation/>
-                    <Box p={2}/>
-                </>
-            ) : <></>}
-            <RouterProvider router={loggedIn ? loggedInRouters : notLoggedInRouters}/>
-        </ApolloProvider>
+        <UserDispatchContext.Provider value={dispatch}>
+            <UserStateContext.Provider value={state}>
+                <ApolloProvider client={client(state.token || undefined)}>
+                    {loggedIn ? (
+                        <>
+                            <Navigation/>
+                            <Box p={2}/>
+                        </>
+                    ) : <></>}
+                    <RouterProvider router={loggedIn ? loggedInRouters : notLoggedInRouters}/>
+                </ApolloProvider>
+            </UserStateContext.Provider>
+        </UserDispatchContext.Provider>
     );
 };
 
