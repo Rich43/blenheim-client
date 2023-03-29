@@ -93,24 +93,24 @@ export const MutableList: FunctionComponent<{
             {
                 items.map((item, index) => {
                     return (
-                        <ListItem>
-                            <ListItemText primary={item}/>
-                            <ListItemSecondaryAction>
-                                <IconButton onClick={() => {
+                        <ListItem key={index}>
+                            <ListItemText primary={item} key={index}/>
+                            <ListItemSecondaryAction key={index}>
+                                <IconButton key={index} onClick={() => {
                                     setRowIndex(index);
                                     setEditText(item);
                                     setOriginalEditText(item);
                                     setDialogOpen(true);
                                 }} edge="end" aria-label="edit">
-                                    <EditIcon/>
+                                    <EditIcon key={index}/>
                                 </IconButton>
-                                <IconButton onClick={() => {
+                                <IconButton key={index} onClick={() => {
                                     setItems(items.filter((value, idx) => {
                                         return idx !== index;
                                     }));
                                     onDelete(index);
                                 }} edge="end" aria-label="delete">
-                                    <DeleteIcon/>
+                                    <DeleteIcon key={index}/>
                                 </IconButton>
                             </ListItemSecondaryAction>
                         </ListItem>

@@ -16,7 +16,7 @@ export const DefaultSubDomains: FunctionComponent = () => {
             title='Default Sub Domains (First 5)'
             linkText='Configure settings'
             redirectURL={SETTINGS}
-            renderListItem={subdomain => (<ListItemText>{subdomain}</ListItemText>)}
+            renderListItem={subdomain => (<ListItemText key={subdomain}>{subdomain}</ListItemText>)}
             list={settings.data.settings.defaultSubdomains}
         />
     );

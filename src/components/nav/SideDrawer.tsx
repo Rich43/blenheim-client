@@ -51,7 +51,7 @@ export const SideDrawer: FunctionComponent = () => {
                             return (
                                 <Link href={item[0]} key={count} onClick={() => setOpen(false)}>
                                     <ListItemButton key={count}>
-                                        <ListItemText>{item[1]}</ListItemText>
+                                        <ListItemText key={count}>{item[1]}</ListItemText>
                                     </ListItemButton>
                                 </Link>
                             );
