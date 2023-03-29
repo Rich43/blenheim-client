@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useContext } from 'react';
 import { deepPurple } from '@mui/material/colors';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LOGOUT } from '../../App';
 import { Avatar, IconButton, Menu, MenuItem } from '@mui/material';
 import { UserStateContext } from '../../userStoreProvider';
@@ -15,10 +15,11 @@ export const UserButton: FunctionComponent = () => {
     const [menuEl, setMenuEl] = React.useState<null | HTMLElement>(null);
     const id = menuEl ? 'avatar-menu' : undefined;
     const store = useContext(UserStateContext);
+    const navigate = useNavigate();
 
     function handleLogout() {
         setMenuEl(null);
-        redirect(LOGOUT);
+        navigate(LOGOUT);
     }
 
     return (

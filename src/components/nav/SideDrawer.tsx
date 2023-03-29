@@ -1,10 +1,9 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Logo } from '../Logo';
 import { DOMAINS, HOME, LOGOUT, SETTINGS } from '../../App';
-import { Box, Drawer, IconButton, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Drawer, IconButton, Link, List, ListItemButton, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Close } from '@mui/icons-material';
-import { redirect } from 'react-router-dom';
 
 const classes: { [key: string]: React.CSSProperties } = {
     list: {
@@ -50,12 +49,11 @@ export const SideDrawer: FunctionComponent = () => {
                         {menu.map(item => {
                             count++;
                             return (
-                                <ListItem button key={count} onClick={() => {
-                                    redirect(item[0]);
-                                    setOpen(false);
-                                }}>
-                                    <ListItemText>{item[1]}</ListItemText>
-                                </ListItem>
+                                <Link href={item[0]} key={count} onClick={() => setOpen(false)}>
+                                    <ListItemButton key={count}>
+                                        <ListItemText>{item[1]}</ListItemText>
+                                    </ListItemButton>
+                                </Link>
                             );
                         })}
                     </List>

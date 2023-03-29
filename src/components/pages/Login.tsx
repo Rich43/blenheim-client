@@ -4,7 +4,7 @@ import { HOME } from '../../App';
 import { useLazyQuery } from '@apollo/client';
 import { LOGIN_QUERY } from '../queries/LoginQuery';
 import { Avatar, Box, Button, Container, CssBaseline, TextField, Typography } from '@mui/material';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { LoginQuery, LoginQueryVariables } from '../../gql/graphql';
 import { UserDispatchContext } from '../../userStoreProvider';
@@ -35,39 +35,32 @@ const classes: { [key: string]: React.CSSProperties } = {
 
 export const Login: React.FC = (): JSX.Element => {
     const dispatch = useContext(UserDispatchContext);
-    const [logIn, setLogIn] = React.useState(false);
-    const [username, setUsername] = React.useState('');
-    const [password, setPassword] = React.useState('');
+    const navigate = useNavigate();
+    const usernameRef = React.useRef<HTMLInputElement>(null);
+    const passwordRef = React.useRef<HTMLInputElement>(null);
     const [getLogin, {loading, error, data}] = useLazyQuery<LoginQuery, LoginQueryVariables>(
         LOGIN_QUERY,
         {fetchPolicy: 'no-cache'}
     );
 
     useEffect(() => {
+        const username = usernameRef.current?.value;
         if (data && data.authentication) {
             const token = data.authentication.login;
             if (token) {
-                if (dispatch) {
+                if (dispatch && username) {
                     dispatch({type: 'user', payload: username});
                     dispatch({type: 'token', payload: token});
-                    setLogIn(false);
-                    redirect(HOME);
+                    navigate(HOME);
                 }
             } else {
                 if (dispatch) {
                     dispatch({type: 'user', payload: ''});
                     dispatch({type: 'token', payload: ''});
-                    setLogIn(false);
                 }
             }
         }
     }, [data]);
-
-    useEffect(() => {
-        if (logIn) {
-            getLogin({variables: {username, password}}).then(ignore => {});
-        }
-    }, [logIn, username, password]);
 
     return (
         <Container component="main" maxWidth="xs">
@@ -81,7 +74,15 @@ export const Login: React.FC = (): JSX.Element => {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form style={classes.form} noValidate>
+                <form style={classes.form} onSubmit={event => {
+                    event.preventDefault();
+                    const username = usernameRef.current?.value;
+                    const password = passwordRef.current?.value;
+                    if (username && password) {
+                        getLogin({variables: {username, password}}).then(ignore => {
+                        });
+                    }
+                }}>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -92,7 +93,7 @@ export const Login: React.FC = (): JSX.Element => {
                         name="username"
                         autoComplete="username"
                         autoFocus
-                        onChange={event => setUsername(event.target.value)}
+                        ref={usernameRef}
                     />
                     <TextField
                         variant="outlined"
@@ -104,13 +105,9 @@ export const Login: React.FC = (): JSX.Element => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
-                        onChange={event => setPassword(event.target.value)}
+                        ref={passwordRef}
                     />
                     <Button
-                        onClick={event => {
-                            event.preventDefault();
-                            setLogIn(true);
-                        }}
                         type="submit"
                         fullWidth
                         variant="contained"
@@ -121,8 +118,8 @@ export const Login: React.FC = (): JSX.Element => {
                         Sign In
                     </Button>
                 </form>
-                {logIn && loading && (<span>Loading...</span>)}
-                {logIn && error && (<span>Error! {error.message}</span>)}
+                {loading && (<span>Loading...</span>)}
+                {error && (<span>Error! {error.message}</span>)}
             </div>
         </Container>
     );

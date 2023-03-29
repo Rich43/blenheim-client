@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Button, Card, CardActions, CardContent, CardHeader, List } from '@mui/material';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const classes: { [key: string]: React.CSSProperties } = {
     card: {
@@ -19,6 +19,7 @@ export const DashboardCard: FunctionComponent<{
     linkText: string;
 }> = ({title, redirectURL, renderListItem, list, linkText}) => {
     let count = 1;
+    const navigate = useNavigate();
     return (
         <Card>
             <CardHeader title={title} style={classes.cardHeader}/>
@@ -35,7 +36,7 @@ export const DashboardCard: FunctionComponent<{
                 </List>
             </CardContent>
             <CardActions>
-                <Button size="small" href="" onClick={() => redirect(redirectURL)}>{linkText}</Button>
+                <Button size="small" href="" onClick={() => navigate(redirectURL)}>{linkText}</Button>
             </CardActions>
         </Card>
     );
