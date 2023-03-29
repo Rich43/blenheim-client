@@ -93,7 +93,7 @@ export const Login: React.FC = (): JSX.Element => {
                         name="username"
                         autoComplete="username"
                         autoFocus
-                        ref={usernameRef}
+                        inputRef={usernameRef}
                     />
                     <TextField
                         variant="outlined"
@@ -105,7 +105,7 @@ export const Login: React.FC = (): JSX.Element => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
-                        ref={passwordRef}
+                        inputRef={passwordRef}
                     />
                     <Button
                         type="submit"
