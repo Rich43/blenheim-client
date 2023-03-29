@@ -25,7 +25,7 @@ export const SelectTextFieldDialog: FunctionComponent<SelectTextFieldDialogProps
                 value={props.selectInitialValue}
             >
                 { Object.keys(props.selectData).map(key => {
-                    return (<MenuItem value={key}>{ props.selectData[key] }</MenuItem>);
+                    return (<MenuItem key={key} value={key}>{props.selectData[key]}</MenuItem>);
                 }) }
             </Select>
             <TextField

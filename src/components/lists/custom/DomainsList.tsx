@@ -21,11 +21,11 @@ export const DomainsList: FunctionComponent<DomainsListProps> =
             <>
                 <ListItem key={`li${domainIndex}`}>
                     <ListItemText key={`lit${domainIndex}`}>
-                        <Button onClick={() => setOpen(!open)}>{name}</Button>
+                        <Button key={domainIndex} onClick={() => setOpen(!open)}>{name}</Button>
                     </ListItemText>
-                    <CreateSubDomainDialog domainName={name}/>
+                    <CreateSubDomainDialog key={domainIndex} domainName={name}/>
                     <IconButton onClick={() => setOpen(!open)} key={`ib2${domainIndex}`}>
-                        {open ? <ExpandLess/> : <ExpandMore/>}
+                        {open ? <ExpandLess key={domainIndex}/> : <ExpandMore key={domainIndex}/>}
                     </IconButton>
                 </ListItem>
 
@@ -36,8 +36,8 @@ export const DomainsList: FunctionComponent<DomainsListProps> =
                                 const listItem = <><ListItem key={`innerLi${defaultSubDomainCount}`}>
                                     <ListItemText
                                         key={`innerLit${defaultSubDomainCount}`}>{subdomain}</ListItemText>
-                                    <IPInfo domainsSettings={domainsSettings}/>
-                                    <Typography>Default Subdomain</Typography>
+                                    <IPInfo key={domainIndex} domainsSettings={domainsSettings}/>
+                                    <Typography key={domainIndex}>Default Subdomain</Typography>
                                 </ListItem></>;
                                 defaultSubDomainCount++;
                                 return listItem;
@@ -48,6 +48,7 @@ export const DomainsList: FunctionComponent<DomainsListProps> =
                                 const subDomainListItem = (
                                     <>
                                         <SubDomainListItem
+                                            key={domainIndex}
                                             domain={name}
                                             subdomain={subdomain.id}
                                             domainsSettings={domainsSettings}

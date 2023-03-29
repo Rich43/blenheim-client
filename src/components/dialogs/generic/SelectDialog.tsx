@@ -22,7 +22,7 @@ export const SelectDialog: FunctionComponent<SelectDialogProps> = (props) => {
                 value={props.initialValue}
             >
                 { Object.keys(props.selectData).map(key => {
-                    return (<MenuItem value={key}>{ props.selectData[key] }</MenuItem>);
+                    return (<MenuItem key={key} value={key}>{props.selectData[key]}</MenuItem>);
                 }) }
             </Select>
         </AbstractDialog>
