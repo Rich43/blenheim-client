@@ -5,10 +5,10 @@ import { reducer, userContextValue, UserDispatchContext, UserStateContext } from
 import { MainRoutes } from './MainRoutes';
 
 export const ROOT = '/';
-export const HOME = 'home';
-export const DOMAINS = 'domains';
-export const SETTINGS = 'settings';
-export const LOGOUT = 'logout';
+export const HOME = '/home';
+export const DOMAINS = '/domains';
+export const SETTINGS = '/settings';
+export const LOGOUT = '/logout';
 
 const App: React.FC = (): JSX.Element => {
     const [state, dispatch] = useReducer(reducer, userContextValue);
