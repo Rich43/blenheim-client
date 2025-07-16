@@ -11,3 +11,10 @@ Development Guidelines
 ----------------------
 
 * Avoid making breaking changes to the protocol. Ensure any protocol modifications remain backward compatible.
+
+Cypress Tests
+-------------
+
+1. Install dependencies with `npm install`.
+2. Run component tests with `npx cypress run --component`.
+3. Coverage reports are generated in `coverage/lcov-report`.
