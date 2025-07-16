@@ -28,6 +28,10 @@ jobs:
       - name: npm install
         id: npm_install
         run: npm i
+      - name: Run unit tests
+        run: CI=true npm test
+      - name: Run Cypress component tests
+        run: npx cypress run --component
       - name: Build project
         id: build_project
         run: npm run build
