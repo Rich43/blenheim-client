@@ -26,8 +26,13 @@ export const SubDomainListItem: FunctionComponent<{
     const [deleteMenuEl, setDeleteMenuEl] = React.useState<null | HTMLElement>(null);
     const deleteMenuId = deleteMenuEl ? 'delete-menu' : undefined;
     const domainsSubdomain = domainsSettings.domains[domainIndex].subdomains[subdomainIndex];
-    const [IPv4Address, setIPv4Address] = React.useState<string>(domainsSubdomain.ipAddressV4 || '');
-    const [IPv6Address, setIPv6Address] = React.useState<string>(domainsSubdomain.ipAddressV6 || '');
+    const [IPv4Address, setIPv4Address] = React.useState<string>('');
+    const [IPv6Address, setIPv6Address] = React.useState<string>('');
+
+    React.useEffect(() => {
+        setIPv4Address(domainsSubdomain.ipAddressV4 || '');
+        setIPv6Address(domainsSubdomain.ipAddressV6 || '');
+    }, [domainsSubdomain.ipAddressV4, domainsSubdomain.ipAddressV6]);
     const [deleteSubDomain] = useDeleteSubDomainMutation();
     const [updateIPv4SubDomain] = useUpdateSubDomainIPv4Mutation();
     const [updateIPv6SubDomain] = useUpdateSubDomainIPv6Mutation();
