@@ -13,9 +13,11 @@ export const DeleteDomainDialog: FunctionComponent<{
     const [deleteDomain] = useDeleteDomainMutation();
     const { domainMap, firstDomain } = createDomainMap(domains);
 
-    if (firstDomain && !value) {
-        setValue(firstDomain);
-    }
+    React.useEffect(() => {
+        if (firstDomain && !value) {
+            setValue(firstDomain);
+        }
+    }, [firstDomain]);
 
     return (
         <SelectDialog
