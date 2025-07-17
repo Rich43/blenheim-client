@@ -14,10 +14,12 @@ export const UpdateDomainDialog: FunctionComponent<{
     const { domainMap, firstDomain } = createDomainMap(domains);
     const [updateDomain] = useUpdateDomainMutation();
 
-    if (firstDomain && !value) {
-        setValue(firstDomain);
-        setDialogText(firstDomain);
-    }
+    React.useEffect(() => {
+        if (firstDomain && !value) {
+            setValue(firstDomain);
+            setDialogText(firstDomain);
+        }
+    }, [firstDomain]);
 
     return (
         <SelectTextFieldDialog
