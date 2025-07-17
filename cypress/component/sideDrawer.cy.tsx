@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'cypress/react18';
+import { mount } from 'cypress/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import { SideDrawer } from '../../src/components/nav/SideDrawer';
