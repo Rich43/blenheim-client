@@ -18,7 +18,7 @@ export const DashboardCard: FunctionComponent<{
     list: string[];
     linkText: string;
 }> = ({title, redirectURL, renderListItem, list, linkText}) => {
-    let count = 1;
+    let count = 0;
     const navigate = useNavigate();
     return (
         <Card>
@@ -26,12 +26,11 @@ export const DashboardCard: FunctionComponent<{
             <CardContent style={classes.card}>
                 <List>
                     {list.map(listItem => {
-                        if (listItem && count <= 5) {
+                        if (listItem && count < 5) {
                             count += 1;
-                            return (renderListItem(listItem, count));
-                        } else {
-                            return (<></>);
+                            return renderListItem(listItem, count);
                         }
+                        return <></>;
                     })}
                 </List>
             </CardContent>
