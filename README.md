@@ -18,3 +18,14 @@ Cypress Tests
 1. Install dependencies with `npm install`.
 2. Run component tests with `npx cypress run --component`.
 3. Coverage reports are generated in `coverage/lcov-report`.
+
+Unit Tests
+----------
+
+Run Jest tests and produce a coverage summary with:
+
+```
+npm test -- --coverage --watchAll=false
+```
+
+The HTML report will be available under `coverage/lcov-report`.
