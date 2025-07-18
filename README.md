@@ -16,8 +16,9 @@ Cypress Tests
 -------------
 
 1. Install dependencies with `npm install`.
-2. Run component tests with `npx cypress run --component`.
-3. Coverage reports are generated in `coverage/lcov-report`.
+2. Ensure the `xvfb` package is installed (`sudo apt-get install -y xvfb`).
+3. Run component tests with `npm run test:cypress`.
+4. Coverage reports are generated in `coverage/lcov-report`.
 
 Unit Tests
 ----------

@@ -39,6 +39,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:cypress": "cypress run --component",
     "eject": "react-scripts eject",
     "codegen": "graphql-codegen --config codegen.ts"
   },
