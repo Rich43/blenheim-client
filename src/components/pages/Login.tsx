@@ -36,7 +36,12 @@ const classes: { [key: string]: React.CSSProperties } = {
 
 export const Login: React.FC = (): JSX.Element => {
     const dispatch = useContext(UserDispatchContext);
-    const navigate = useNavigate();
+    let navigate: (path: string) => void = () => {};
+    try {
+        navigate = useNavigate();
+    } catch (e) {
+        // ignore if not within a Router
+    }
     const usernameRef = React.useRef<HTMLInputElement>(null);
     const passwordRef = React.useRef<HTMLInputElement>(null);
     const [getLogin, {loading, error, data}] = useLazyQuery<LoginQuery, LoginQueryVariables>(
