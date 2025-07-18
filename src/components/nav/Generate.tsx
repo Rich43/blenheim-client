@@ -3,6 +3,7 @@ import { QUERY } from '../queries/DnsQuery';
 import { SingleButtonDialog } from '../dialogs/generic/SingleButtonDialog';
 import { useLazyQuery } from '@apollo/client';
 import { Box, Button, Typography } from '@mui/material';
+import { formatErrorMessage } from '../../utils/errorMessage';
 import ErrorIcon from '@mui/icons-material/Error';
 import InfoIcon from '@mui/icons-material/Info';
 import { DnsQuery, DnsQueryVariables } from '../../gql/graphql';
@@ -32,7 +33,7 @@ export const Generate: FunctionComponent = () => {
     useEffect(() => {
         if (queryError) {
             setError(true);
-            setResult(queryError.message || '');
+            setResult(formatErrorMessage(queryError));
         }
     }, [queryError]);
 
