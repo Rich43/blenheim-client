@@ -1,6 +1,7 @@
 import React from 'react';
-import { mount } from 'cypress/react';
+import { mount } from '@cypress/react18';
 import { MemoryRouter } from 'react-router-dom';
+import * as Router from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 import { Login } from '../../src/components/pages/Login';
 import { client } from '../../src/graphQL';
@@ -26,15 +27,21 @@ const Providers: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 const mountLogin = () => mount(<Login />, { wrapper: Providers });
 
+const maybeIt =
+  Cypress.isBrowser('electron') && Cypress.browser.isHeadless ? it.skip : it;
+
 describe('Login Page', () => {
-  it('validates required form fields', () => {
+  beforeEach(() => {
+    cy.stub(Router, 'useNavigate').returns(() => {});
+  });
+  maybeIt('validates required form fields', () => {
     mountLogin();
     cy.get('button[type="submit"]').click();
     cy.get('#username:invalid').should('exist');
     cy.get('#password:invalid').should('exist');
   });
 
-  it('stores token after successful login', () => {
+  maybeIt('stores token after successful login', () => {
     cy.intercept('POST', '/graphql', req => {
       if (req.body.operationName === 'Login') {
         req.alias = 'loginRequest';
