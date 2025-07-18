@@ -4,6 +4,7 @@ import { HOME } from '../../App';
 import { useLazyQuery } from '@apollo/client';
 import { LOGIN_QUERY } from '../queries/LoginQuery';
 import { Avatar, Box, Button, Container, CssBaseline, TextField, Typography } from '@mui/material';
+import { formatErrorMessage } from '../../utils/errorMessage';
 import { useNavigate } from 'react-router-dom';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { LoginQuery, LoginQueryVariables } from '../../gql/graphql';
@@ -123,7 +124,7 @@ export const Login: React.FC = (): JSX.Element => {
                     </Button>
                 </form>
                 {loading && (<span>Loading...</span>)}
-                {error && (<span>Error! {error.message}</span>)}
+                {error && (<span>Error! {formatErrorMessage(error)}</span>)}
             </div>
         </Container>
     );

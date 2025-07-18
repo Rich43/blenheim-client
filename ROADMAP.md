@@ -10,13 +10,13 @@ This document outlines the planned features for the Blenheim client and lists th
 - **GraphQL Integration** – All data is fetched and mutated through Apollo Client with a type-safe codegen setup.
 - **Docker & Deployment** – A `Dockerfile` and Kubernetes deployment manifest are provided for containerized deployments.
 - **Testing Infrastructure** – Jest unit tests and Cypress component tests are configured with coverage reporting.
+- **Error Handling** – Friendlier error messages appear for network and server failures.
 
 ## Upcoming Roadmap
 
 ### Short Term
 
 - **UI Polish** – Improve page layouts and navigation for smaller screens.
-- **Error Handling** – Display friendlier error messages for network and server failures.
 - **Continuous Integration** – Add automated test runs and lints in CI.
 
 ### Medium Term
